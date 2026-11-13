@@ -58,5 +58,6 @@ All scoring is in [`public/matcher.mjs`](public/matcher.mjs):
 1. On GitHub, under **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
 2. Forks have Actions turned off by default, so open the **Actions** tab and enable workflows.
 3. Merge into `main` and push. The site appears at `https://<user>.github.io/krilliohn/`.
+4. Custom domain (live at **https://krilliohn.com**): in Cloudflare DNS, add CNAME `@` and CNAME `www` pointing to `noamshamir.github.io`, both **DNS only** (grey cloud). Set the domain under **Settings → Pages → Custom domain**, then enable **Enforce HTTPS** once the certificate is issued. `CONFIG.siteUrl` holds the same address for link previews.
 
 All paths are relative, so the site also works from any other static host or subfolder.

@@ -36,5 +36,5 @@ Noam`,
   // First line of the copied/shared emoji grid.
   shareTitle: 'Krilliohn',
   // Public address of the site. Link previews (iMessage etc.) need it to show the image.
-  siteUrl: 'https://noamshamir.github.io/krilliohn/',
+  siteUrl: 'https://krilliohn.com/',
 };
