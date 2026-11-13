@@ -1,1 +1,0 @@
-ALTER TABLE runs ADD COLUMN paused_at INTEGER;

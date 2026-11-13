@@ -31,7 +31,7 @@ function trench(c){const g=c.createLinearGradient(0,0,0,688);g.addColorStop(0,'#
 }
 export class Seascape{
  constructor(){this.layers=[top,mid,trench].map(paint=>{const canvas=document.createElement('canvas');canvas.width=384;canvas.height=688;paint(canvas.getContext('2d'));return canvas});this.trenchMirror=document.createElement('canvas');this.trenchMirror.width=384;this.trenchMirror.height=688;const c=this.trenchMirror.getContext('2d');c.translate(0,688);c.scale(1,-1);c.drawImage(this.layers[2],0,0)}
- draw(ctx,w,h,worldY){for(const [index,start,end,alpha]of[[0,40,470,.45],[1,480,2620,.5],[2,2950,7060,.55]]){
+ draw(ctx,w,h,worldY){for(const [index,start,end,alpha]of[[0,40,470,.45],[1,480,2620,.5],[2,2950,9060,.55]]){
   const topY=worldY(start),bottom=worldY(end);if(topY>h||bottom<0)continue;const scale=w/384,tileH=688*scale;
   ctx.save();
   for(let y=Math.max(0,topY);y<Math.min(h,bottom);){

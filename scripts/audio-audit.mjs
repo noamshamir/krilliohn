@@ -6,8 +6,8 @@ const browser=await chromium.launch({headless:true,channel:'chrome'});
 try{
   const page=await browser.newPage();await page.goto(base);await page.waitForFunction(()=>window.render_game_to_text);
   const results=await page.evaluate(async()=>{
-    const {Sound}=await import('/sound.mjs');const report=[];
-    for(const name of ['begin','submit','reject','tick','tier','sink','plankton','tooclever','schooler','rare','deepcut','krillion','miss','surface','blub']){
+    const {Sound}=await import(new URL('sound.mjs',location.href).href);const report=[];
+    for(const name of ['begin','submit','reject','tick','tier','sink','plankton','schooler','rare','deepcut','krillion','miss','surface','blub']){
       const ac=new OfflineAudioContext(1,96000,48000);Object.defineProperty(ac,'state',{get:()=> 'running'});
       const sound=new Sound();sound.ac=ac;sound.master=ac.createGain();sound.master.gain.value=.75;sound.master.connect(ac.destination);sound.event(name);
       const samples=(await ac.startRendering()).getChannelData(0);

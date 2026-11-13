@@ -1,27 +1,24 @@
 {
-  "name": "openkrillion",
+  "name": "krilliohn",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "dev": "wrangler dev --port 3051",
     "build": "node scripts/build.mjs",
+    "dev": "npm run build && node scripts/serve.mjs dist",
+    "serve": "node scripts/serve.mjs dist",
     "test": "node --test tests/*.test.mjs",
-    "deploy": "npm run build && wrangler deploy --config wrangler.production.jsonc",
-    "db:local": "wrangler d1 migrations apply openkrillion --local",
-    "db:remote": "wrangler d1 migrations apply openkrillion --remote --config wrangler.production.jsonc",
-    "check": "node scripts/audit.mjs",
     "test:browser": "node scripts/browser-audit.mjs",
-    "test:audio": "node scripts/audio-audit.mjs",
-    "test:mobile": "node scripts/mobile-flow-audit.mjs",
-    "test:art": "node scripts/art-audit.mjs"
+    "test:audio": "node scripts/audio-audit.mjs"
   },
   "devDependencies": {
-    "wrangler": "4.151.1",
     "sharp": "^0.35.5",
     "playwright": "^1.58.0",
-    "simple-icons": "^16.0.0",
     "@fontsource/vt323": "^5.2.7"
+  },
+  "description": "Krilliohn: a one-off special edition built on OpenKrillion (MIT).",
+  "engines": {
+    "node": ">=20"
   }
 }

@@ -1,7 +1,6 @@
 # Third-party notices
 
+- Krilliohn is a personal modification of OpenKrillion (https://github.com/VulcanEon/openkrillion.com-service), MIT License, Copyright (c) 2026 OpenKrillion contributors. The license text is in `LICENSE` and ships with the site as `LICENSE.txt`.
 - VT323 font: Peter Hull and contributors, SIL Open Font License. The license is bundled at `public/assets/VT323-LICENSE.txt`.
-- Claude, Perplexity and Google Gemini brand symbols: Simple Icons, CC0; trademarks remain their respective owners'. The OpenAI brand symbol is from Simple Icons 14.15.0; Grok symbol is from the LobeHub icon collection (MIT). These marks identify outbound providers, not endorsements.
-- The pixel ocean, game implementation, synthesized sounds and local character SVGs are independently implemented for OpenKrillion. No proprietary original game JavaScript bundle is distributed.
-- The original game is at https://krillion.io. OpenKrillion is independent and is not affiliated with its creator.
-- Reference puzzle snapshots are optionally retrieved from public original-game endpoints into the operator's database and bucket. They are not bundled into or relicensed by the MIT application code. The runnable repository includes a small independently assembled sample bank.
+- The pixel ocean, game implementation, synthesized sounds and character SVGs come from OpenKrillion, which describes them as independently implemented. OpenKrillion is an independent project, not affiliated with the original Krillion game at https://krillion.io, and neither is Krilliohn.
+- The prompts and answers in `krillion_answers.json` are original to this edition.
