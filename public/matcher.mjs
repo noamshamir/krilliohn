@@ -5,13 +5,11 @@
 export const TIER_ORDER = ['plankton', 'schooler', 'rare', 'deep_cut', 'one_in_a_krillion'];
 export const TIER_ID = { plankton: 'plankton', schooler: 'schooler', rare: 'rare', deep_cut: 'deepcut', one_in_a_krillion: 'krillion' };
 export const TIER_POINTS = { plankton: 10, schooler: 30, rare: 60, deepcut: 85, krillion: 100 };
-export const PARTIAL_CREDIT_MESSAGE = 'Not on our chart, but we’ll allow it.';
 
 // Keep only what the browser needs (drops authoring notes and links).
 export function prepareData(raw) {
   const questions = [...raw.questions].sort((a, b) => a.order - b.order).map(q => ({
     prompt: q.prompt,
-    unlisted: q.unlisted_answers === 'partial_credit' ? 'partial_credit' : 'reject',
     tiers: Object.fromEntries(TIER_ORDER.filter(t => q.tiers[t]).map(t => [t, q.tiers[t]])),
     notAccepted: q.not_accepted ? { note: q.not_accepted.note, answers: q.not_accepted.answers } : null,
   }));
@@ -145,6 +143,8 @@ function compare(a, b) {
 }
 
 // Scores one guess against one prompt. Returns null for an empty guess.
+// kind: 'match' (scores), 'not_accepted' (wrong, with the prompt's note) or
+// 'miss' (not on the list). The game gives another try for the last two.
 export function matchGuess(question, input) {
   const rawAnswer = String(input ?? '').trim().slice(0, 256);
   if (!rawAnswer) return null;
@@ -158,14 +158,13 @@ export function matchGuess(question, input) {
   const how = top ? ({ 3: 'exact', 2: 'typo', 1: 'partial' })[top.level] : null;
   if (top?.entry.kind === 'tier') return { rawAnswer, answer: top.entry.display, tier: top.entry.tier, score: TIER_POINTS[top.entry.tier], kind: 'match', how, message: null };
   if (top) return { rawAnswer, answer: top.entry.display, tier: null, score: 0, kind: 'not_accepted', how, message: question.notAccepted.note };
-  if (question.unlisted === 'partial_credit') return { rawAnswer, answer: rawAnswer, tier: 'schooler', score: TIER_POINTS.schooler, kind: 'unlisted', how: null, message: PARTIAL_CREDIT_MESSAGE };
   return { rawAnswer, answer: null, tier: null, score: 0, kind: 'miss', how: null, message: null };
 }
 
 // ------------------------------------------------------------- final question
 // Positive phrases that happen to contain a negative word.
 const POSITIVE_NEGATIONS = ['why not', 'no doubt', 'no question', 'no brainer', 'never ask'];
-const NEGATIONS = new Set(['no', 'nah', 'not', 'never', 'nope', 'nop', 'dont', 'cant', 'wont', 'cannot', 'idk', 'dunno', 'maybe', 'unsure', 'nay', 'nein', 'nada', 'nty', 'pass', 'לא', '👎', '❌', '🙅', '💔']);
+const NEGATIONS = new Set(['no', 'nah', 'naw', 'not', 'never', 'nope', 'nop', 'noway', 'dont', 'cant', 'wont', 'cannot', 'idk', 'dunno', 'maybe', 'unsure', 'nay', 'nein', 'non', 'nada', 'nty', 'pass', 'לא', '👎', '❌', '🙅', '💔', '🚫']);
 const NEGATION_FRAGMENTS = ['아니', '아닌', '싫', '안돼', '안 돼', '안해', '안 해', '별로'];
 
 export function normalizeReply(value) {
@@ -183,29 +182,34 @@ function acceptedForms(final) {
   return replyCache.get(final);
 }
 
-// true when the answer to the last question is a yes.
-export function isYes(final, input) {
+// Sorts an answer to the last question: 'yes', 'no' (any negative, which the
+// game refuses as a joke) or 'other'.
+export function classifyReply(final, input) {
   const text = normalizeReply(input);
-  if (!text) return false;
+  if (!text) return 'other';
   let rest = text;
   for (const phrase of POSITIVE_NEGATIONS) while (containsPhrase(rest, phrase)) rest = ` ${rest} `.replace(` ${phrase} `, ' ').trim();
-  if (rest.split(' ').some(t => NEGATIONS.has(t)) || NEGATION_FRAGMENTS.some(f => rest.includes(f))) return false;
+  if (rest.split(' ').some(t => NEGATIONS.has(t)) || NEGATION_FRAGMENTS.some(f => rest.includes(f))) return 'no';
   const accepted = acceptedForms(final), flat = text.replace(/ /g, ''), tokens = text.split(' ');
-  if (accepted.some(p => containsPhrase(text, p))) return true;
-  if (accepted.some(p => { const f = p.replace(/ /g, ''); return f.length >= 3 && flat.startsWith(f); })) return true;
+  if (accepted.some(p => containsPhrase(text, p))) return 'yes';
+  if (accepted.some(p => { const f = p.replace(/ /g, ''); return f.length >= 3 && flat.startsWith(f); })) return 'yes';
   const words = [...tokens];
   for (let i = 0; i + 1 < tokens.length; i++) words.push(tokens[i] + tokens[i + 1]);
-  return accepted.some(p => {
+  const typo = accepted.some(p => {
     if (p.includes(' ') || !/^\p{L}+$/u.test(p) || (p.length < 4 && p !== 'yes')) return false;
     const limit = p.length >= 8 ? 2 : 1;
     return words.some(w => distance(w, p, limit) <= limit);
   });
+  return typo ? 'yes' : 'other';
 }
+export const isYes = (final, input) => classifyReply(final, input) === 'yes';
 
+// Only a yes scores (One in a Krilliohn); 'no' and 'other' get another try.
 export function judgeFinal(final, input) {
   const rawAnswer = String(input ?? '').trim().slice(0, 256);
   if (!rawAnswer) return null;
-  return isYes(final, rawAnswer)
+  const kind = classifyReply(final, rawAnswer);
+  return kind === 'yes'
     ? { rawAnswer, answer: rawAnswer, tier: 'krillion', score: TIER_POINTS.krillion, kind: 'yes', how: null, message: null }
-    : { rawAnswer, answer: rawAnswer, tier: null, score: 0, kind: 'no', how: null, message: null };
+    : { rawAnswer, answer: null, tier: null, score: 0, kind, how: null, message: null };
 }

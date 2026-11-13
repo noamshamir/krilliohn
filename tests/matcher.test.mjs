@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { prepareData, matchGuess, judgeFinal, normalize, distance, TIER_ORDER, TIER_ID, PARTIAL_CREDIT_MESSAGE } from '../public/matcher.mjs';
-import { shareText, TIERS, ROUNDS, MAX_SCORE, FLOOR_DEPTH } from '../public/rules.mjs';
+import { prepareData, matchGuess, judgeFinal, classifyReply, normalize, distance, TIER_ORDER, TIER_ID } from '../public/matcher.mjs';
+import { shareText, TIERS, ROUNDS, MAX_SCORE, FLOOR_DEPTH, ROUND_MS, PREVIEW_MS } from '../public/rules.mjs';
 import { CONFIG } from '../public/config.mjs';
 
 const RAW = JSON.parse(readFileSync(new URL('../krillion_answers.json', import.meta.url), 'utf8'));
@@ -47,18 +47,24 @@ test('"lee" scores the easiest tier it matches', () => {
   assert.equal(r.tier, 'plankton');
 });
 
-test('not accepted answers score 0 with the prompt note', () => {
+test('the answer clock is twice the original 25 seconds, after a 3-second descent', () => {
+  assert.equal(ROUND_MS, 50000);
+  assert.equal(PREVIEW_MS, 3000);
+});
+
+test('not accepted answers are wrong and carry the prompt note (the game asks again)', () => {
   const r = matchGuess(LINALG, 'determinant');
   assert.deepEqual([r.kind, r.score, r.tier, r.message], ['not_accepted', 0, null, RAW.questions.find(q => q.prompt.startsWith('Name a linear')).not_accepted.note]);
   assert.equal(matchGuess(SOCCER, 'Ange').message, 'Manager, not a player');
   assert.equal(matchGuess(PIGEON, 'mini golf').kind, 'not_accepted');
 });
 
-test('unlisted answers follow each prompt rule', () => {
+test('unlisted answers are misses on every prompt (the game asks again)', () => {
   const kpop = matchGuess(KPOP, 'Ailee');
-  assert.deepEqual([kpop.kind, kpop.tier, kpop.score, kpop.message, kpop.answer], ['unlisted', 'schooler', 30, PARTIAL_CREDIT_MESSAGE, 'Ailee']);
+  assert.deepEqual([kpop.kind, kpop.tier, kpop.score], ['miss', null, 0]);
   const pigeon = matchGuess(PIGEON, 'Bowling');
   assert.deepEqual([pigeon.kind, pigeon.score, pigeon.tier], ['miss', 0, null]);
+  assert.equal(matchGuess(DRINK, 'zzzz').kind, 'miss');
 });
 
 test('mai tai never drifts into Maotai, and Maotai spellings still land', () => {
@@ -129,24 +135,31 @@ test('empty input is not an answer', () => {
   assert.equal(judgeFinal(DATA.final, ' '), null);
 });
 
-test('final question: requested yes and no answers', () => {
+test('final question: requested yes answers', () => {
   for (const yes of ['yesss', 'of course', 'why not', '👍', '네']) assert.equal(judgeFinal(DATA.final, yes).kind, 'yes', yes);
-  for (const no of ['absolutely not', 'of course not', 'maybe', 'no', 'idk']) assert.equal(judgeFinal(DATA.final, no).kind, 'no', no);
+});
+
+test('final question: every kind of no is refused (the joke)', () => {
+  for (const no of ['absolutely not', 'of course not', 'maybe', 'no', 'idk', 'nope', 'nah', 'naww', 'nooooo', 'NO!!!', 'no way', 'noway', 'hell no', 'no thanks', 'never', 'not really', "don't think so", "i can't", 'yes but no', 'lol no', 'nein', 'לא', '아니', '아니요', '싫어', '👎', '❌']) {
+    const r = judgeFinal(DATA.final, no);
+    assert.deepEqual([r.kind, r.score, r.tier], ['no', 0, null], no);
+  }
 });
 
 test('final question: whole accepted and rejected lists from the JSON', () => {
   for (const yes of RAW.final_question.accepted) assert.equal(judgeFinal(DATA.final, yes).kind, 'yes', yes);
-  for (const no of RAW.final_question.rejected_examples) assert.equal(judgeFinal(DATA.final, no).kind, 'no', no);
+  for (const no of RAW.final_question.rejected_examples) assert.notEqual(judgeFinal(DATA.final, no).kind, 'yes', no);
 });
 
-test('final question: generous yes, still strict about negatives', () => {
-  for (const yes of ['YES!!!', 'omg yes', 'Noam, yes', 'um of course!!', 'yse', 'absolutley', 'ofcourse', 'yesyes', "I thought you'd never ask", 'sure why not', '❤️❤️❤️', 'yes ❤️', 'no doubt', 'Yes Sir']) assert.equal(judgeFinal(DATA.final, yes).kind, 'yes', yes);
-  for (const no of ['nope', 'nah', 'never', "don't think so", "i can't", 'not yet', 'no way', 'hell no', 'nooo', 'yes but no', 'maybe later', 'let me think', 'ask me later', '응 아니', '👎', 'idk maybe']) assert.equal(judgeFinal(DATA.final, no).kind, 'no', no);
+test('final question: generous yes; anything else is neither yes nor no', () => {
+  for (const yes of ['YES!!!', 'omg yes', 'Noam, yes', 'um of course!!', 'yse', 'absolutley', 'ofcourse', 'yesyes', "I thought you'd never ask", 'sure why not', '❤️❤️❤️', 'yes ❤️', 'no doubt', 'Yes Sir']) assert.equal(classifyReply(DATA.final, yes), 'yes', yes);
+  for (const other of ['let me think', 'ask me later', 'purple', 'hmm']) assert.equal(classifyReply(DATA.final, other), 'other', other);
 });
 
 test('final answer scores One in a Krilliohn or 0', () => {
   assert.deepEqual([judgeFinal(DATA.final, 'yes').tier, judgeFinal(DATA.final, 'yes').score], ['krillion', 100]);
   assert.deepEqual([judgeFinal(DATA.final, 'no').tier, judgeFinal(DATA.final, 'no').score], [null, 0]);
+  assert.deepEqual([judgeFinal(DATA.final, 'hmm').tier, judgeFinal(DATA.final, 'hmm').score], [null, 0]);
   assert.equal(TIERS.krillion.name, 'One in a Krilliohn');
 });
 

@@ -9,6 +9,8 @@ export const TIERS = {
   krillion: { name: 'One in a Krilliohn', score: 100, emoji: '🌟', color: '#ffd166', blurb: 'The designated gem. Trench floor.' },
 };
 export const ROUNDS = 9;
+export const PREVIEW_MS = 3000; // "the clock starts in 3" countdown, as in the original
+export const ROUND_MS = 50000; // 50 seconds per answer (the original was 25)
 export const MAX_SCORE = ROUNDS * 100;
 export const METRES_PER_POINT = 10;
 export const FLOOR_DEPTH = MAX_SCORE * METRES_PER_POINT; // 9,000m: the very bottom
