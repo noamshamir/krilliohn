@@ -52,24 +52,28 @@ export function distance(a, b, limit = Infinity) {
 export const allowance = length => (length >= 13 ? 3 : length >= 8 ? 2 : length >= 4 ? 1 : 0);
 
 // --------------------------------------------------------------- word overlap
-const STOP = new Set('the a an of in on at to and or for with by from my his her their our your me we i you he she it its is was were be been that this as s t st did do does got get when went time'.split(' '));
-const isContent = t => (/^\p{N}+$/u.test(t) ? t.length >= 2 : t.length >= 2 && !STOP.has(t));
+const STOP = new Set('the a an of in on at to and or for with by from my his her their our your me we i you he she it its is was were be been that this as s t st did do does got get when went time him them they us out up off over into about all just so then than what who would could have has had whole during after before while'.split(' '));
+// Words from the question itself ("nic", "isaac", "linear"...) never count as evidence on their own.
+const isContent = (t, ignore) => (/^\p{N}+$/u.test(t) ? t.length >= 2 : t.length >= 2 && !STOP.has(t) && !ignore?.has(t));
 // How many letters of `target` a guessed word earns: its length, minus typos.
+// Single words are stricter than whole answers (same first letter, 6+ letters)
+// so "rotation" doesn't become "relation" or "waking" become "taking".
 function wordValue(guess, target) {
   if (guess === target) return target.length;
-  const limit = allowance(target.length), d = distance(guess, target, limit);
+  if (target.length < 6 || guess[0] !== target[0]) return 0;
+  const limit = target.length >= 10 ? 2 : 1, d = distance(guess, target, limit);
   return d <= limit ? Math.min(guess.length, target.length) - d : 0;
 }
 
 // Letters of the answer's meaningful words that the guess covers. Words match
 // with typos, and split/joined words count ("heungmin" ~ "heung min").
-function overlap(guessTokens, form) {
-  const units = guessTokens.filter(isContent);
-  for (let i = 0; i + 1 < guessTokens.length; i++) { const joined = guessTokens[i] + guessTokens[i + 1]; if (joined.length >= 4) units.push(joined); }
+function overlap(guessTokens, form, ignore) {
+  const units = guessTokens.filter(t => isContent(t, ignore));
+  for (let i = 0; i + 1 < guessTokens.length; i++) { const joined = guessTokens[i] + guessTokens[i + 1]; if (joined.length >= 4 && (isContent(guessTokens[i], ignore) || isContent(guessTokens[i + 1], ignore))) units.push(joined); }
   if (!units.length) return 0;
   const earned = new Map();
   const credit = (indexes, value) => { if (value > 0 && value > indexes.reduce((n, j) => n + (earned.get(j) || 0), 0)) indexes.forEach((j, k) => earned.set(j, k ? 0 : value)); };
-  form.tokens.forEach((t, j) => { if (isContent(t)) credit([j], Math.max(0, ...units.map(u => wordValue(u, t)))); });
+  form.tokens.forEach((t, j) => { if (isContent(t, ignore)) credit([j], Math.max(0, ...units.map(u => wordValue(u, t)))); });
   for (let j = 0; j + 1 < form.tokens.length; j++) {
     const joined = form.tokens[j] + form.tokens[j + 1];
     if (joined.length >= 4) credit([j, j + 1], Math.max(0, ...units.map(u => wordValue(u, joined))));
@@ -81,17 +85,18 @@ function overlap(guessTokens, form) {
 
 // ------------------------------------------------------------------- indexing
 const indexCache = new WeakMap();
-function makeForm(text, isName = false) {
+function makeForm(text, ignore, isName = false) {
   const norm = normalize(text);
   const tokens = norm ? norm.split(' ') : [];
-  return { norm, flat: norm.replace(/ /g, ''), raw: rawKey(text), tokens, isName, content: tokens.filter(isContent).reduce((n, t) => n + t.length, 0) };
+  return { norm, flat: norm.replace(/ /g, ''), raw: rawKey(text), tokens, isName, content: tokens.filter(t => isContent(t, ignore)).reduce((n, t) => n + t.length, 0) };
 }
 function indexQuestion(question) {
   if (indexCache.has(question)) return indexCache.get(question);
   const entries = [];
+  entries.ignore = new Set(normalize(question.prompt).split(' '));
   const add = (list, extra) => list.forEach(entry => {
     const [display, ...aliases] = entry;
-    const forms = [makeForm(display), makeForm(stripParens(display), true), ...aliases.map(a => makeForm(a))];
+    const forms = [makeForm(display, entries.ignore), makeForm(stripParens(display), entries.ignore, true), ...aliases.map(a => makeForm(a, entries.ignore))];
     entries.push({ display, ...extra, order: entries.length, forms: forms.filter(f => f.norm || f.raw) });
   });
   TIER_ORDER.forEach((key, rank) => add(question.tiers[key] || [], { kind: 'tier', tier: TIER_ID[key], rank }));
@@ -112,7 +117,7 @@ function containsRun(tokens, run) {
 // Best way a guess matches one entry: 3 exact (a whole answer, or whole words
 // of the entry's display name, so a shared name like "Lee", "Kim" or "Hugo"
 // takes the easiest tier), 2 typo of a whole answer, 1 word overlap.
-function grade(guess, entry) {
+function grade(guess, entry, ignore) {
   if (entry.forms.some(form => (form.norm && (form.norm === guess.norm || form.flat === guess.flat)) || (form.raw && form.raw === guess.raw))) return { level: 3, whole: true };
   if (guess.content && entry.forms.some(form => form.isName && containsRun(form.tokens, guess.tokens))) return { level: 3, whole: false };
   let best = null;
@@ -125,7 +130,7 @@ function grade(guess, entry) {
       if (d <= limit) { const c = { level: 2, distance: d }; if (better(c)) best = c; }
     }
     if (!best || best.level < 2) {
-      const letters = overlap(guess.tokens, form);
+      const letters = overlap(guess.tokens, form, ignore);
       if (letters) { const c = { level: 1, letters, cover: letters / Math.max(1, form.content) }; if (better(c)) best = c; }
     }
   }
@@ -150,9 +155,14 @@ export function matchGuess(question, input) {
   if (!rawAnswer) return null;
   const norm = normalize(rawAnswer);
   const tokens = norm ? norm.split(' ') : [];
-  const guess = { norm, flat: norm.replace(/ /g, ''), raw: rawKey(rawAnswer), tokens, content: tokens.some(isContent) };
+  const entries = indexQuestion(question);
+  const guess = { norm, flat: norm.replace(/ /g, ''), raw: rawKey(rawAnswer), tokens, content: tokens.some(t => isContent(t, entries.ignore)) };
   const candidates = [];
-  for (const entry of indexQuestion(question)) { const g = grade(guess, entry); if (g) candidates.push({ ...g, entry }); }
+  for (const entry of entries) {
+    const g = grade(guess, entry, entries.ignore);
+    // A "not accepted" note needs the term itself (exact or typo), not a shared word.
+    if (g && !(entry.kind === 'not_accepted' && g.level === 1)) candidates.push({ ...g, entry });
+  }
   candidates.sort(compare);
   const top = candidates[0];
   const how = top ? ({ 3: 'exact', 2: 'typo', 1: 'partial' })[top.level] : null;

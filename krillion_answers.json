@@ -1299,26 +1299,9 @@
      [
       "Isomorphism",
       "isomorphisms"
-     ],
-     [
-      "Theorem",
-      "theorems"
-     ],
-     [
-      "Proof",
-      "prove",
-      "proofs"
      ]
     ],
     "rare": [
-     [
-      "Coefficient",
-      "coefficients"
-     ],
-     [
-      "Constant",
-      "constants"
-     ],
      [
       "Row operations",
       "elementary row operations",
@@ -1352,25 +1335,8 @@
       "one solution"
      ],
      [
-      "No solution",
-      "inconsistent",
-      "empty solution set"
-     ],
-     [
-      "Infinitely many solutions",
-      "infinitely many"
-     ],
-     [
       "Back-substitution",
       "back substitution"
-     ],
-     [
-      "Augmented matrix"
-     ],
-     [
-      "Entry",
-      "entries",
-      "matrix entry"
      ],
      [
       "Column vector",
@@ -1379,14 +1345,6 @@
      [
       "Row vector",
       "row vectors"
-     ],
-     [
-      "Component",
-      "components"
-     ],
-     [
-      "Set notation",
-      "set builder notation"
      ],
      [
       "Vector sum",
@@ -1414,10 +1372,6 @@
       "Square matrix"
      ],
      [
-      "Angle",
-      "angle between vectors"
-     ],
-     [
       "Unit vector"
      ],
      [
@@ -1426,26 +1380,12 @@
       "orthogonality"
      ],
      [
-      "Line",
-      "lines"
-     ],
-     [
-      "Plane",
-      "planes"
-     ],
-     [
       "R^n",
       "rn",
       "r2",
       "r3",
       "real n-space",
       "euclidean space"
-     ],
-     [
-      "Leading entry",
-      "pivot",
-      "pivots",
-      "leading 1"
      ],
      [
       "Row equivalent",
@@ -1480,19 +1420,6 @@
      ],
      [
       "Proper subspace"
-     ],
-     [
-      "Standard basis",
-      "e2",
-      "e3",
-      "en"
-     ],
-     [
-      "Representation",
-      "rep",
-      "rep b",
-      "representation with respect to a basis",
-      "coordinates"
      ],
      [
       "Finite-dimensional",
@@ -1593,16 +1520,6 @@
       "Free vector"
      ],
      [
-      "Canonical position"
-     ],
-     [
-      "Direction vector"
-     ],
-     [
-      "Cauchy-Schwarz",
-      "cauchy schwarz inequality"
-     ],
-     [
       "Triangle inequality"
      ],
      [
@@ -1610,15 +1527,6 @@
       "reflexive",
       "symmetric",
       "transitive"
-     ],
-     [
-      "Equivalence class",
-      "equivalence classes"
-     ],
-     [
-      "Canonical form",
-      "canonical representative",
-      "representative"
      ],
      [
       "Function space",
@@ -1631,9 +1539,6 @@
       "relationship"
      ],
      [
-      "Exchange Lemma"
-     ],
-     [
       "Infinite-dimensional",
       "infinite dimensional"
      ],
@@ -1644,47 +1549,21 @@
       "Column rank"
      ],
      [
-      "Automorphism",
-      "automorphisms"
-     ],
-     [
-      "Inverse map",
-      "inverse function"
-     ],
-     [
-      "Dilation"
-     ],
-     [
-      "Rotation"
-     ],
-     [
-      "Reflection"
+      "Symmetric Matrix",
+      "symmetric matrices",
+      "symmetrical matrix",
+      "a equals a transpose",
+      "a transpose equals a",
+      "a = a^t",
+      "a^t = a"
      ],
      [
       "Therefore",
-      "∴",
-      "so"
-     ],
-     [
-      "As such"
-     ],
-     [
-      "Hence"
-     ],
-     [
-      "Thus"
-     ],
-     [
-      "Implies",
-      "implication",
-      "⇒"
+      "∴"
      ],
      [
       "Contradiction",
       "proof by contradiction"
-     ],
-     [
-      "Contrapositive"
      ],
      [
       "Converse"
@@ -1694,53 +1573,26 @@
       "proof by induction"
      ],
      [
-      "QED",
-      "q.e.d."
-     ],
-     [
-      "Without loss of generality",
-      "wlog"
-     ],
-     [
-      "For all",
-      "for every",
-      "∀"
-     ],
-     [
-      "There exists",
-      "∃"
-     ],
-     [
-      "Suppose",
-      "assume",
-      "let"
-     ],
-     [
-      "It follows that",
-      "follows"
-     ],
-     [
       "LI/LD",
       "li ld",
       "li or ld"
-     ],
-     [
-      "p(3)=0",
-      "p of 3 equals 0",
-      "p(3) = 0"
      ]
     ],
     "one_in_a_krillion": [
      [
-      "Linearize",
-      "linearizing",
-      "linearise",
-      "linearized"
+      "Cauchy-Schwarz",
+      "cauchy schwarz inequality",
+      "cauchy-schwarz inequality",
+      "cauchy schwartz",
+      "cauchy schwartz inequality",
+      "schwarz inequality"
      ],
      [
-      "s(1,0,0)+t(0,1,0)",
-      "s(1,0,0) + t(0,1,0)",
-      "s 1 0 0 t 0 1 0"
+      "Contrapositive",
+      "contrapositives",
+      "contra positive",
+      "contraposition",
+      "proof by contrapositive"
      ]
     ]
    },
@@ -3140,6 +2992,16 @@
     ],
     "schooler": [
      [
+      "Nic ignoring Oehler",
+      "ignoring oehler",
+      "ignored oehler",
+      "nic ignored oehler",
+      "oehler",
+      "telling oehler to leave",
+      "kicked oehler out",
+      "told oehler to leave"
+     ],
+     [
       "Setting off the fire alarm in 9th grade (Nic)",
       "fire alarm",
       "setting off the fire alarm",
@@ -3158,91 +3020,52 @@
       "mao hat",
       "mao",
       "mao cap"
-     ],
-     [
-      "Taking Scott's glasses at padel (Nic)",
-      "scott's glasses",
-      "glasses",
-      "took scotts glasses"
-     ],
-     [
-      "Asking Mr. Ellis what AI he uses for slides (Isaac)",
-      "ai for slides",
-      "asking ellis about ai",
-      "what ai do you use"
-     ],
-     [
-      "Communist / CPC larp (Isaac)",
-      "communism",
-      "communist",
-      "cpc",
-      "ccp",
-      "communist larp"
      ]
     ],
     "rare": [
      [
-      "Sneaking to Sam's birthday (Nic)",
+      "Nic Sneaking to Sam's birthday",
       "sam's birthday",
       "sams birthday",
       "sneaking out",
       "snuck to sams birthday"
      ],
      [
-      "74 points (Nic)",
+      "74 points",
       "74",
       "74 points",
       "seventy four points",
       "seventy four"
      ],
      [
-      "Rhett kicking him out of their room (Nic)",
+      "Rhett kicking Nic out of their room",
       "rhett",
       "kicked out",
       "rhett kicking him out",
       "kicked out of his room"
      ],
      [
-      "AI glasses (Isaac)",
+      "Isaac's AI glasses",
       "ai glasses",
       "meta glasses",
       "ray ban meta",
       "smart glasses"
      ],
      [
-      "The taco essay (Nic)",
-      "taco essay",
-      "tacos",
-      "taco hunting",
-      "college essay about tacos"
-     ],
-     [
-      "Telling everyone Noam is secretly mean (Nic)",
-      "secretly mean",
-      "says noam is mean"
-     ],
-     [
-      "Amazon 'wealth redistribution' (Isaac)",
-      "amazon",
-      "wealth redistribution",
-      "200 dollars amazon",
-      "amazon order"
-     ],
-     [
-      "Making Miles pay him back for Chipotle (Isaac)",
-      "chipotle",
-      "miles chipotle"
-     ],
-     [
-      "Not waking up in Busan (Isaac)",
-      "sleeping in",
-      "missed breakfast",
-      "wouldn't wake up"
+      "Isaac's Rubber Ducky essay method",
+      "rubber ducky",
+      "rubber duck",
+      "rubber ducky method",
+      "rubber duck method",
+      "rubber ducky essay",
+      "rubber duck essay",
+      "ducky method",
+      "the duck method"
      ]
     ],
     "deep_cut": [
      [
-      "Yoobeen kegstand video (Nic)",
+      "Nic showing Yoobeen kegstand video",
       "yoobeen",
       "kegstand",
       "keg stand",
@@ -3250,48 +3073,67 @@
       "yoobeen kegstand"
      ],
      [
-      "Submitting the CS application (Isaac)",
+      "Isaac submitting the CS job application",
       "cs application",
       "computer science application",
-      "submitting cs application"
+      "submitting cs application",
+      "cs job application",
+      "job application",
+      "cs job"
      ],
      [
-      "Telling Athena's mom and 'taking power' (Nic)",
+      "Nic telling Athena's mom to call the school",
       "athena's mom",
       "athenas mom",
       "taking power",
-      "took power"
+      "took power",
+      "call the school",
+      "called the school",
+      "athena's mom called the school"
      ],
      [
-      "Video-game-only Shanghai tour guide (Nic)",
-      "tour guide",
-      "shanghai",
-      "video games in shanghai"
-     ],
-     [
-      "Two birthdays on Snap (Isaac)",
-      "two birthdays",
-      "snap birthday",
-      "birthday on snap"
-     ],
-     [
-      "The Chengdu bar (Isaac)",
+      "The Chengdu bar (Isaac and Nic)",
       "chengdu",
       "chengdu bar"
      ],
      [
-      "On his computer the whole triple date (Isaac)",
-      "triple date",
-      "on his computer"
+      "Isaac falls asleep during movie with you",
+      "falling asleep",
+      "fell asleep",
+      "falls asleep",
+      "isaac fell asleep",
+      "fell asleep during the movie",
+      "asleep during the movie",
+      "sleeping during the movie",
+      "napping during the movie"
      ]
     ],
     "one_in_a_krillion": [
      [
-      "Telling Oehler to leave his room (Nic)",
-      "oehler",
-      "telling oehler to leave",
-      "kicked oehler out",
-      "told oehler to leave"
+      "Nic being a bitch-ass social democrat senior year after larping maoism 9-11th grade",
+      "social democrat",
+      "social democracy",
+      "socdem",
+      "soc dem",
+      "nic the social democrat",
+      "larping maoism",
+      "maoism",
+      "maoist",
+      "maoist larp",
+      "mao larp",
+      "communist larp",
+      "communism",
+      "communist"
+     ],
+     [
+      "Isaac walking ahead of you the whole time at the mall",
+      "walking ahead",
+      "walked ahead",
+      "walking ahead of you",
+      "walking ahead at the mall",
+      "walking in front",
+      "the mall",
+      "mall"
      ]
     ]
    },
@@ -3422,7 +3264,15 @@
      ],
      [
       "Karaoke",
-      NEW (we did this in austin and in busan)
+      "karaoke night",
+      "karaoke in busan",
+      "karaoke in austin",
+      "busan karaoke",
+      "noraebang",
+      "norebang",
+      "노래방",
+      "singing",
+      "singing karaoke"
      ]
     ],
     "deep_cut": [
@@ -3503,7 +3353,18 @@
      ],
      [
       "Fortune-teller",
-      NEW
+      "fortune teller",
+      "fortuneteller",
+      "fortune telling",
+      "fortunes",
+      "getting our fortunes told",
+      "getting our fortune told",
+      "fortune reading",
+      "saju",
+      "사주",
+      "tarot",
+      "tarot reading",
+      "palm reading"
      ]
     ],
     "one_in_a_krillion": [

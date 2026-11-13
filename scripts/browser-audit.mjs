@@ -95,7 +95,7 @@ try {
 
   await toAnswering(page, 3);
   await rejected(page, 'determinant', /^“determinant”: We haven't learned that yet · try again$/);
-  log.push(await answer(page, 'linearizing')); await descend(page);
+  log.push(await answer(page, 'contrapositive')); await descend(page);
 
   for (const [round, text] of [[4, 'hyunggyu'], [5, 'mai tai'], [6, 'when nic set off the fire alarm'], [7, 'parking garage']]) {
     await toAnswering(page, round);

@@ -37,7 +37,8 @@ test('requested matcher cases', () => {
   expectMatch(DRINK, 'Mai Tai', 'Mai tai', 'deepcut');
   expectMatch(DRINK, 'moutai', 'Maotai', 'krillion');
   expectMatch(LINALG, 'therefore', 'Therefore', 'deepcut');
-  expectMatch(LINALG, 'linearizing', 'Linearize', 'krillion');
+  expectMatch(LINALG, 'contrapositive', 'Contrapositive', 'krillion'); // replaces Linearize, removed from the list
+  expectMatch(LINALG, 'cauchy schwartz', 'Cauchy-Schwarz', 'krillion');
 });
 
 test('"lee" scores the easiest tier it matches', () => {
@@ -101,12 +102,31 @@ test('part of an answer is enough', () => {
   expectMatch(SOCCER, 'heungmin', 'Son Heung-min', 'plankton');
   expectMatch(SOCCER, 'hugo', 'Hugo Lloris', 'schooler');
   expectMatch(SCANDAL, 'when nic set off the fire alarm', 'Setting off the fire alarm in 9th grade (Nic)', 'schooler');
-  expectMatch(SCANDAL, 'telling everyone noam is secretly mean', 'Telling everyone Noam is secretly mean (Nic)', 'rare');
+  expectMatch(SCANDAL, 'the rubber ducky method', "Isaac's Rubber Ducky essay method", 'rare');
+  expectMatch(SCANDAL, 'isaac walked ahead of me at the mall', 'Isaac walking ahead of you the whole time at the mall', 'krillion');
+  expectMatch(SCANDAL, 'nic becoming a social democrat', 'Nic being a bitch-ass social democrat senior year after larping maoism 9-11th grade', 'krillion');
+  expectMatch(DATES, 'noraebang', 'Karaoke', 'rare');
+  expectMatch(DATES, 'fortune teller', 'Fortune-teller', 'deepcut');
   expectMatch(DATES, 'got trapped in a garage', 'Getting trapped in a parking garage', 'krillion');
   expectMatch(DATES, 'studying linear at merit', 'Studying linear at Merit Cafe', 'rare');
   expectMatch(DATES, 'walking to the health center', 'Riding to the health center', 'deepcut');
   expectMatch(MARIO, 'shell', 'Blue Shell', 'plankton');
   expectMatch(DRINK, 'tequila shots', 'Tequila', 'plankton');
+});
+
+test('words from the question alone are not an answer', () => {
+  for (const guess of ['nic', 'isaac', 'Nic Wang', 'isaac lin', 'scandal']) assert.equal(matchGuess(SCANDAL, guess).kind, 'miss', guess);
+  for (const guess of ['linear', 'algebra']) assert.equal(matchGuess(LINALG, guess).kind, 'miss', guess);
+  assert.equal(matchGuess(PIGEON, 'game').kind, 'miss');
+});
+
+test('a not-accepted note needs the term itself, not a shared word', () => {
+  assert.equal(matchGuess(LINALG, 'theorem').kind, 'miss');
+  assert.equal(matchGuess(LINALG, 'rank nullity theorem').kind, 'not_accepted');
+});
+
+test('removed answers no longer score', () => {
+  for (const [q, guess] of [[LINALG, 'linearizing'], [LINALG, 'theorem'], [DATES, 'just dance'], [DATES, 'hot pot'], [DATES, 'tacodeli'], [SCANDAL, 'chipotle']]) assert.notEqual(matchGuess(q, guess).kind, 'match', guess);
 });
 
 test('an explicit alias beats a shared word elsewhere', () => {

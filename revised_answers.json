@@ -1,0 +1,3481 @@
+{
+ "tiers": {
+  "plankton": 10,
+  "schooler": 30,
+  "rare": 60,
+  "deep_cut": 85,
+  "one_in_a_krillion": 100
+ },
+ "unlisted_answers_key": {
+  "reject": "0 points, not accepted",
+  "partial_credit": "suggest schooler (30) for a real but unlisted answer"
+ },
+ "questions": [
+  {
+   "prompt": "Name a Mario Kart item",
+   "unlisted_answers": "reject",
+   "tiers": {
+    "plankton": [
+     [
+      "Banana",
+      "banana peel",
+      "bananas"
+     ],
+     [
+      "Blue Shell",
+      "spiny shell",
+      "spiny",
+      "winged shell",
+      "blue"
+     ],
+     [
+      "Red Shell",
+      "red"
+     ],
+     [
+      "Green Shell",
+      "green"
+     ],
+     [
+      "Mushroom",
+      "mushrooms",
+      "shroom"
+     ]
+    ],
+    "schooler": [
+     [
+      "Star",
+      "super star",
+      "invincibility star",
+      "starman"
+     ],
+     [
+      "Lightning",
+      "lightning bolt",
+      "bolt",
+      "thunder bolt"
+     ],
+     [
+      "Bullet Bill",
+      "bullet",
+      "bill"
+     ],
+     [
+      "Bob-omb",
+      "bomb",
+      "bobomb",
+      "bob omb"
+     ],
+     [
+      "Golden Mushroom",
+      "gold mushroom",
+      "golden shroom"
+     ],
+     [
+      "Triple Mushroom",
+      "triple mushrooms",
+      "3 mushrooms"
+     ],
+     [
+      "Coin",
+      "coins"
+     ],
+     [
+      "Blooper",
+      "squid",
+      "ink"
+     ],
+     [
+      "Triple Bananas",
+      "triple banana",
+      "3 bananas"
+     ],
+     [
+      "Triple Red Shells",
+      "triple reds"
+     ],
+     [
+      "Triple Green Shells",
+      "triple greens"
+     ]
+    ],
+    "rare": [
+     [
+      "Fake Item Box",
+      "fake item",
+      "fake box",
+      "fake itembox"
+     ],
+     [
+      "Super Horn",
+      "horn"
+     ],
+     [
+      "Boo",
+      "ghost"
+     ],
+     [
+      "Mega Mushroom",
+      "mega",
+      "giant mushroom"
+     ],
+     [
+      "POW Block",
+      "pow"
+     ],
+     [
+      "Fire Flower",
+      "fireflower"
+     ],
+     [
+      "Super Leaf",
+      "leaf",
+      "tanooki",
+      "tanooki leaf",
+      "tanooki tail"
+     ],
+     [
+      "Piranha Plant",
+      "potted piranha plant",
+      "plant"
+     ],
+     [
+      "Boomerang Flower",
+      "boomerang"
+     ],
+     [
+      "Thunder Cloud",
+      "cloud",
+      "thundercloud"
+     ]
+    ],
+    "deep_cut": [
+     [
+      "Crazy Eight",
+      "crazy 8"
+     ],
+     [
+      "Lucky Seven",
+      "lucky 7"
+     ],
+     [
+      "Feather",
+      "cape feather"
+     ],
+     [
+      "Fireballs",
+      "fireball"
+     ],
+     [
+      "Giant Banana",
+      "big banana"
+     ],
+     [
+      "Bowser's Shell",
+      "bowser shell",
+      "giant shell"
+     ],
+     [
+      "Egg",
+      "yoshi egg",
+      "birdo egg"
+     ],
+     [
+      "Ice Flower",
+      "iceflower"
+     ],
+     [
+      "Hammer"
+     ],
+     [
+      "Coin Shell"
+     ],
+     [
+      "Kamek"
+     ]
+    ],
+    "one_in_a_krillion": [
+     [
+      "Heart",
+      "hearts"
+     ],
+     [
+      "Chain Chomp",
+      "chomp"
+     ]
+    ]
+   },
+   "notes": "No inside-joke pick given, so the top tier is the two rarest Double Dash items. Swap in anything from your Mario Kart date.",
+   "order": 1
+  },
+  {
+   "prompt": "Name a K-pop singer (fathers of the genre count)",
+   "unlisted_answers": "partial_credit",
+   "tiers": {
+    "plankton": [
+     [
+      "BTS",
+      "bangtan",
+      "bangtan boys",
+      "방탄소년단"
+     ],
+     [
+      "Jungkook",
+      "jung kook",
+      "jk",
+      "jeon jungkook"
+     ],
+     [
+      "Jimin",
+      "park jimin"
+     ],
+     [
+      "V",
+      "taehyung",
+      "kim taehyung"
+     ],
+     [
+      "RM",
+      "namjoon",
+      "kim namjoon",
+      "rap monster"
+     ],
+     [
+      "Suga",
+      "yoongi",
+      "agust d",
+      "min yoongi"
+     ],
+     [
+      "Jin",
+      "seokjin",
+      "kim seokjin"
+     ],
+     [
+      "J-Hope",
+      "jhope",
+      "hoseok"
+     ],
+     [
+      "Blackpink",
+      "black pink",
+      "블랙핑크"
+     ],
+     [
+      "Lisa",
+      "lalisa"
+     ],
+     [
+      "Jennie",
+      "jennie kim"
+     ],
+     [
+      "Rosé",
+      "rose",
+      "rosie"
+     ],
+     [
+      "Jisoo"
+     ],
+     [
+      "PSY",
+      "psy gangnam style"
+     ]
+    ],
+    "schooler": [
+     [
+      "Twice"
+     ],
+     [
+      "Stray Kids",
+      "skz"
+     ],
+     [
+      "NewJeans",
+      "new jeans",
+      "njz"
+     ],
+     [
+      "Seventeen",
+      "svt"
+     ],
+     [
+      "aespa"
+     ],
+     [
+      "IVE"
+     ],
+     [
+      "LE SSERAFIM",
+      "lesserafim"
+     ],
+     [
+      "(G)I-DLE",
+      "gidle",
+      "g idle",
+      "i-dle",
+      "idle"
+     ],
+     [
+      "Red Velvet"
+     ],
+     [
+      "EXO"
+     ],
+     [
+      "BIGBANG",
+      "big bang"
+     ],
+     [
+      "G-Dragon",
+      "gd",
+      "gdragon"
+     ],
+     [
+      "Taeyang"
+     ],
+     [
+      "IU",
+      "아이유",
+      "lee ji-eun"
+     ],
+     [
+      "Taeyeon"
+     ],
+     [
+      "Girls' Generation",
+      "snsd",
+      "girls generation"
+     ],
+     [
+      "NCT",
+      "nct 127",
+      "nct dream"
+     ],
+     [
+      "ITZY"
+     ],
+     [
+      "ATEEZ"
+     ],
+     [
+      "TXT",
+      "tomorrow x together"
+     ],
+     [
+      "ENHYPEN"
+     ],
+     [
+      "Hanni"
+     ],
+     [
+      "Minji"
+     ],
+     [
+      "Karina"
+     ],
+     [
+      "Winter"
+     ],
+     [
+      "Wonyoung",
+      "jang wonyoung"
+     ],
+     [
+      "Felix"
+     ],
+     [
+      "Hyunjin"
+     ],
+     [
+      "Bang Chan"
+     ],
+     [
+      "Mark Lee",
+      "mark"
+     ],
+     [
+      "KATSEYE",
+      "kats eye"
+     ]
+    ],
+    "rare": [
+     [
+      "MAMAMOO"
+     ],
+     [
+      "Hwasa"
+     ],
+     [
+      "Sunmi"
+     ],
+     [
+      "HyunA"
+     ],
+     [
+      "Chungha"
+     ],
+     [
+      "Taemin"
+     ],
+     [
+      "SHINee"
+     ],
+     [
+      "Jonghyun"
+     ],
+     [
+      "Key"
+     ],
+     [
+      "Super Junior",
+      "suju"
+     ],
+     [
+      "2NE1"
+     ],
+     [
+      "CL"
+     ],
+     [
+      "Dara"
+     ],
+     [
+      "Park Bom"
+     ],
+     [
+      "Wonder Girls"
+     ],
+     [
+      "SISTAR"
+     ],
+     [
+      "KARA"
+     ],
+     [
+      "f(x)",
+      "fx"
+     ],
+     [
+      "Apink"
+     ],
+     [
+      "Monsta X"
+     ],
+     [
+      "GOT7"
+     ],
+     [
+      "Jackson Wang"
+     ],
+     [
+      "BamBam"
+     ],
+     [
+      "iKON"
+     ],
+     [
+      "WINNER"
+     ],
+     [
+      "TREASURE"
+     ],
+     [
+      "BABYMONSTER"
+     ],
+     [
+      "ILLIT"
+     ],
+     [
+      "KISS OF LIFE"
+     ],
+     [
+      "ZEROBASEONE",
+      "zb1"
+     ],
+     [
+      "RIIZE"
+     ],
+     [
+      "BOYNEXTDOOR"
+     ],
+     [
+      "TWS"
+     ],
+     [
+      "DAY6"
+     ],
+     [
+      "The Boyz"
+     ],
+     [
+      "Oh My Girl"
+     ],
+     [
+      "LOONA"
+     ],
+     [
+      "Chuu"
+     ],
+     [
+      "fromis_9",
+      "fromis 9"
+     ],
+     [
+      "Kep1er"
+     ],
+     [
+      "NMIXX"
+     ],
+     [
+      "STAYC"
+     ],
+     [
+      "Dreamcatcher"
+     ],
+     [
+      "EVERGLOW"
+     ],
+     [
+      "Momoland"
+     ],
+     [
+      "Zico"
+     ],
+     [
+      "Jay Park"
+     ],
+     [
+      "DEAN"
+     ],
+     [
+      "Crush"
+     ],
+     [
+      "Heize"
+     ],
+     [
+      "Epik High"
+     ],
+     [
+      "Tablo"
+     ],
+     [
+      "BIBI"
+     ],
+     [
+      "Jessi"
+     ],
+     [
+      "Lee Hi"
+     ],
+     [
+      "AKMU",
+      "akdong musician"
+     ],
+     [
+      "Baekhyun"
+     ],
+     [
+      "Kai"
+     ],
+     [
+      "D.O.",
+      "do",
+      "kyungsoo"
+     ],
+     [
+      "Chanyeol"
+     ],
+     [
+      "Sehun"
+     ],
+     [
+      "Suho"
+     ],
+     [
+      "Xiumin"
+     ],
+     [
+      "Chen"
+     ],
+     [
+      "T.O.P",
+      "top"
+     ],
+     [
+      "Daesung"
+     ],
+     [
+      "Yoona"
+     ],
+     [
+      "Tiffany"
+     ],
+     [
+      "Jessica Jung"
+     ],
+     [
+      "Sooyoung"
+     ],
+     [
+      "Seohyun"
+     ],
+     [
+      "Irene"
+     ],
+     [
+      "Seulgi"
+     ],
+     [
+      "Wendy"
+     ],
+     [
+      "Joy"
+     ],
+     [
+      "Yeri"
+     ],
+     [
+      "Nayeon"
+     ],
+     [
+      "Jihyo"
+     ],
+     [
+      "Momo"
+     ],
+     [
+      "Sana"
+     ],
+     [
+      "Mina"
+     ],
+     [
+      "Dahyun"
+     ],
+     [
+      "Chaeyoung"
+     ],
+     [
+      "Tzuyu"
+     ],
+     [
+      "Jeongyeon"
+     ],
+     [
+      "Ryujin"
+     ],
+     [
+      "Yeji"
+     ],
+     [
+      "Yuna"
+     ],
+     [
+      "Soyeon"
+     ],
+     [
+      "Miyeon"
+     ],
+     [
+      "Minnie"
+     ],
+     [
+      "Yuqi"
+     ],
+     [
+      "Shuhua"
+     ],
+     [
+      "Sakura"
+     ],
+     [
+      "Kazuha"
+     ],
+     [
+      "Chaewon"
+     ],
+     [
+      "Yunjin"
+     ],
+     [
+      "Eunchae"
+     ],
+     [
+      "Giselle"
+     ],
+     [
+      "Ningning"
+     ],
+     [
+      "Yujin",
+      "an yujin"
+     ],
+     [
+      "Leeseo"
+     ],
+     [
+      "Rei"
+     ],
+     [
+      "Gaeul"
+     ],
+     [
+      "Liz"
+     ],
+     [
+      "Danielle"
+     ],
+     [
+      "Haerin"
+     ],
+     [
+      "Hyein"
+     ],
+     [
+      "Heeseung"
+     ],
+     [
+      "Jay"
+     ],
+     [
+      "Jake"
+     ],
+     [
+      "Sunghoon"
+     ],
+     [
+      "Sunoo"
+     ],
+     [
+      "Jungwon"
+     ],
+     [
+      "Ni-ki",
+      "niki"
+     ],
+     [
+      "Yeonjun"
+     ],
+     [
+      "Soobin"
+     ],
+     [
+      "Beomgyu"
+     ],
+     [
+      "Taehyun"
+     ],
+     [
+      "Hueningkai"
+     ],
+     [
+      "Hongjoong"
+     ],
+     [
+      "Seonghwa"
+     ],
+     [
+      "Yunho"
+     ],
+     [
+      "San"
+     ],
+     [
+      "Mingi"
+     ],
+     [
+      "Wooyoung"
+     ],
+     [
+      "S.Coups",
+      "scoups"
+     ],
+     [
+      "Jeonghan"
+     ],
+     [
+      "Joshua"
+     ],
+     [
+      "Hoshi"
+     ],
+     [
+      "Wonwoo"
+     ],
+     [
+      "Woozi"
+     ],
+     [
+      "DK",
+      "dokyeom"
+     ],
+     [
+      "Mingyu"
+     ],
+     [
+      "The8",
+      "the 8"
+     ],
+     [
+      "Seungkwan"
+     ],
+     [
+      "Vernon"
+     ],
+     [
+      "Dino"
+     ],
+     [
+      "Lee Know"
+     ],
+     [
+      "Changbin"
+     ],
+     [
+      "Han",
+      "han jisung"
+     ],
+     [
+      "Seungmin"
+     ],
+     [
+      "I.N",
+      "jeongin"
+     ],
+     [
+      "Taeyong"
+     ],
+     [
+      "Jaehyun"
+     ],
+     [
+      "Doyoung"
+     ],
+     [
+      "Haechan"
+     ],
+     [
+      "Jaemin"
+     ],
+     [
+      "Jeno"
+     ],
+     [
+      "Renjun"
+     ],
+     [
+      "Chenle"
+     ],
+     [
+      "Ten"
+     ],
+     [
+      "EJAE"
+     ]
+    ],
+    "deep_cut": [
+     [
+      "Seo Taiji",
+      "seo taiji and boys",
+      "서태지"
+     ],
+     [
+      "Lee Soo-man",
+      "lee sooman",
+      "sm founder"
+     ],
+     [
+      "Park Jin-young",
+      "jyp",
+      "j.y. park"
+     ],
+     [
+      "Yang Hyun-suk",
+      "yg"
+     ],
+     [
+      "Bang Si-hyuk",
+      "hitman bang"
+     ],
+     [
+      "Shin Jung-hyeon",
+      "shin joong hyun"
+     ],
+     [
+      "Kim Gun-mo",
+      "kim gunmo"
+     ],
+     [
+      "H.O.T.",
+      "hot"
+     ],
+     [
+      "Sechs Kies",
+      "sechskies"
+     ],
+     [
+      "S.E.S.",
+      "ses"
+     ],
+     [
+      "Fin.K.L",
+      "finkl"
+     ],
+     [
+      "Shinhwa"
+     ],
+     [
+      "g.o.d",
+      "god"
+     ],
+     [
+      "BoA"
+     ],
+     [
+      "Rain",
+      "bi"
+     ],
+     [
+      "Se7en",
+      "seven"
+     ],
+     [
+      "Lee Hyori"
+     ],
+     [
+      "Uhm Jung-hwa"
+     ],
+     [
+      "Kim Wan-sun"
+     ],
+     [
+      "Lee Moon-sae"
+     ],
+     [
+      "Patti Kim"
+     ],
+     [
+      "Na Hoon-a"
+     ],
+     [
+      "Nam Jin"
+     ],
+     [
+      "Shin Seung-hun"
+     ],
+     [
+      "Kim Hyun-sik"
+     ],
+     [
+      "Kim Kwang-seok"
+     ],
+     [
+      "Lee Sun-hee"
+     ],
+     [
+      "Yoon Jong-shin"
+     ],
+     [
+      "Deulgukhwa"
+     ],
+     [
+      "Sanulrim"
+     ],
+     [
+      "The Kim Sisters",
+      "kim sisters"
+     ],
+     [
+      "Turbo"
+     ],
+     [
+      "Clon"
+     ],
+     [
+      "Deux"
+     ],
+     [
+      "Cool"
+     ],
+     [
+      "Jinusean"
+     ],
+     [
+      "1TYM"
+     ],
+     [
+      "Baby V.O.X",
+      "baby vox"
+     ],
+     [
+      "Fly to the Sky"
+     ],
+     [
+      "Brown Eyed Soul"
+     ],
+     [
+      "Hyun Jin-young"
+     ]
+    ],
+    "one_in_a_krillion": [
+     [
+      "Cho Yong-pil",
+      "cho yongpil",
+      "yong-pil cho",
+      "choyongpil",
+      "조용필",
+      "jo yong-pil",
+      "cho yong pil"
+     ]
+    ]
+   },
+   "notes": "Groups and individual members both count. Full group rosters can be pulled from an API later.",
+   "order": 2
+  },
+  {
+   "prompt": "Name a GamePigeon game we've played",
+   "unlisted_answers": "reject",
+   "tiers": {
+    "plankton": [
+     [
+      "8 Ball",
+      "8ball",
+      "eight ball",
+      "8-ball",
+      "pool",
+      "billiards"
+     ],
+     [
+      "Cup Pong",
+      "cuppong",
+      "beer pong",
+      "pong",
+      "cups"
+     ]
+    ],
+    "schooler": [
+     [
+      "Chess"
+     ],
+     [
+      "Four in a Row",
+      "4 in a row",
+      "connect four",
+      "connect 4",
+      "four in a line"
+     ]
+    ],
+    "rare": [
+     [
+      "Checkers",
+      "draughts"
+     ],
+     [
+      "Anagrams",
+      "anagram"
+     ],
+     [
+      "Word Hunt",
+      "wordhunt"
+     ]
+    ],
+    "deep_cut": [
+     [
+      "Word Bites",
+      "wordbites",
+      "word bite",
+      "wordbite"
+     ]
+    ],
+    "one_in_a_krillion": [
+     [
+      "20 Questions",
+      "twenty questions",
+      "20q",
+      "20 qs",
+      "20 question",
+      "twenty q"
+     ]
+    ]
+   },
+   "not_accepted": {
+    "note": "We haven't played that one (yet)",
+    "answers": [
+     [
+      "9 Ball",
+      "nine ball"
+     ],
+     [
+      "Archery"
+     ],
+     [
+      "Basketball"
+     ],
+     [
+      "Darts"
+     ],
+     [
+      "Mini Golf",
+      "golf",
+      "minigolf"
+     ],
+     [
+      "Knockout"
+     ],
+     [
+      "Shuffleboard"
+     ],
+     [
+      "Paintball"
+     ],
+     [
+      "Tanks"
+     ],
+     [
+      "Sea Battle",
+      "battleship"
+     ],
+     [
+      "Gomoku"
+     ],
+     [
+      "Dots and Boxes",
+      "dots & boxes",
+      "dots"
+     ],
+     [
+      "Reversi",
+      "othello"
+     ],
+     [
+      "Mancala"
+     ],
+     [
+      "Filler"
+     ],
+     [
+      "Crazy 8",
+      "crazy eights",
+      "crazy 8s"
+     ]
+    ]
+   },
+   "order": 3
+  },
+  {
+   "prompt": "Name a linear algebra term we've learned",
+   "unlisted_answers": "reject",
+   "tiers": {
+    "plankton": [
+     [
+      "Vector",
+      "vectors"
+     ],
+     [
+      "Matrix",
+      "matrices"
+     ],
+     [
+      "Linear system",
+      "system of equations",
+      "system of linear equations",
+      "linear equations"
+     ],
+     [
+      "Linear equation",
+      "equation"
+     ],
+     [
+      "Solution",
+      "solutions",
+      "solution set"
+     ],
+     [
+      "Scalar",
+      "scalars"
+     ]
+    ],
+    "schooler": [
+     [
+      "Gauss's method",
+      "gaussian elimination",
+      "gauss method",
+      "gauss",
+      "elimination",
+      "row reduction",
+      "row reduce"
+     ],
+     [
+      "Echelon form",
+      "row echelon form",
+      "ref",
+      "echelon"
+     ],
+     [
+      "Free variable",
+      "free variables"
+     ],
+     [
+      "Parameter",
+      "parameters",
+      "parametrize",
+      "parametrization",
+      "parameterization"
+     ],
+     [
+      "Linear combination",
+      "linear combinations"
+     ],
+     [
+      "Homogeneous",
+      "homogeneous system",
+      "homogeneous equation"
+     ],
+     [
+      "Particular solution"
+     ],
+     [
+      "General solution"
+     ],
+     [
+      "Dot product",
+      "inner product",
+      "dot"
+     ],
+     [
+      "Length",
+      "magnitude",
+      "norm"
+     ],
+     [
+      "Reduced echelon form",
+      "rref",
+      "reduced row echelon form"
+     ],
+     [
+      "Gauss-Jordan",
+      "gauss jordan elimination",
+      "gauss-jordan reduction"
+     ],
+     [
+      "Vector space",
+      "vector spaces"
+     ],
+     [
+      "Subspace",
+      "subspaces"
+     ],
+     [
+      "Span",
+      "spanning set",
+      "spans",
+      "spanned"
+     ],
+     [
+      "Linear independence",
+      "linearly independent",
+      "independent",
+      "li"
+     ],
+     [
+      "Linear dependence",
+      "linearly dependent",
+      "dependent",
+      "ld"
+     ],
+     [
+      "Basis",
+      "bases"
+     ],
+     [
+      "Dimension",
+      "dim"
+     ],
+     [
+      "Rank"
+     ],
+     [
+      "Isomorphism",
+      "isomorphisms"
+     ]
+    ],
+    "rare": [
+     [
+      "Row operations",
+      "elementary row operations",
+      "elementary reduction operations",
+      "reduction operations"
+     ],
+     [
+      "Row swap",
+      "swapping",
+      "swap",
+      "interchange"
+     ],
+     [
+      "Rescaling",
+      "rescale",
+      "multiply a row",
+      "scaling"
+     ],
+     [
+      "Row combination",
+      "combining rows",
+      "row addition",
+      "add a multiple"
+     ],
+     [
+      "Leading variable",
+      "leading variables"
+     ],
+     [
+      "Unique solution",
+      "one solution"
+     ],
+     [
+      "Back-substitution",
+      "back substitution"
+     ],
+     [
+      "Column vector",
+      "column vectors"
+     ],
+     [
+      "Row vector",
+      "row vectors"
+     ],
+     [
+      "Vector sum",
+      "vector addition"
+     ],
+     [
+      "Scalar multiplication",
+      "scalar multiple"
+     ],
+     [
+      "Zero vector"
+     ],
+     [
+      "Trivial solution"
+     ],
+     [
+      "Singular",
+      "singular matrix"
+     ],
+     [
+      "Nonsingular",
+      "nonsingular matrix"
+     ],
+     [
+      "Square matrix"
+     ],
+     [
+      "Unit vector"
+     ],
+     [
+      "Orthogonal",
+      "perpendicular",
+      "orthogonality"
+     ],
+     [
+      "R^n",
+      "rn",
+      "r2",
+      "r3",
+      "real n-space",
+      "euclidean space"
+     ],
+     [
+      "Row equivalent",
+      "row equivalence"
+     ],
+     [
+      "Closure",
+      "closed under addition",
+      "closed under scalar multiplication",
+      "closed"
+     ],
+     [
+      "Additive inverse"
+     ],
+     [
+      "Polynomial space",
+      "polynomials",
+      "polynomial",
+      "p2",
+      "p3",
+      "pn"
+     ],
+     [
+      "Matrix space",
+      "m2x2",
+      "2x2 matrices"
+     ],
+     [
+      "Trivial subspace",
+      "trivial space",
+      "trivial"
+     ],
+     [
+      "Proper subspace"
+     ],
+     [
+      "Finite-dimensional",
+      "finite dimensional"
+     ],
+     [
+      "Row space"
+     ],
+     [
+      "Column space"
+     ],
+     [
+      "Transpose"
+     ],
+     [
+      "Isomorphic"
+     ],
+     [
+      "One-to-one",
+      "injective",
+      "1-1",
+      "injection"
+     ],
+     [
+      "Onto",
+      "surjective",
+      "surjection"
+     ],
+     [
+      "Correspondence",
+      "bijection",
+      "bijective"
+     ],
+     [
+      "Preserves addition",
+      "preserves structure",
+      "structure preserving"
+     ],
+     [
+      "Preserves scalar multiplication"
+     ],
+     [
+      "Function",
+      "map",
+      "mapping"
+     ],
+     [
+      "Lemma",
+      "lemmas"
+     ],
+     [
+      "Corollary",
+      "corollaries"
+     ],
+     [
+      "Definition",
+      "define"
+     ],
+     [
+      "Union",
+      "∪"
+     ],
+     [
+      "Intersection",
+      "∩"
+     ],
+     [
+      "Subset",
+      "subsets"
+     ],
+     [
+      "Superset",
+      "supersets"
+     ],
+     [
+      "Subsection",
+      "subsections"
+     ],
+     [
+      "Set",
+      "sets",
+      "element",
+      "member"
+     ],
+     [
+      "If and only if",
+      "iff"
+     ]
+    ],
+    "deep_cut": [
+     [
+      "n-tuple",
+      "tuple",
+      "ordered pair",
+      "triple"
+     ],
+     [
+      "Free vector"
+     ],
+     [
+      "Triangle inequality"
+     ],
+     [
+      "Equivalence relation",
+      "reflexive",
+      "symmetric",
+      "transitive"
+     ],
+     [
+      "Function space",
+      "function spaces"
+     ],
+     [
+      "Nontrivial linear relationship",
+      "linear relationship",
+      "nontrivial relationship",
+      "relationship"
+     ],
+     [
+      "Infinite-dimensional",
+      "infinite dimensional"
+     ],
+     [
+      "Row rank"
+     ],
+     [
+      "Column rank"
+     ],
+     [
+      "Symmetric Matrix"
+      NEW
+     ],
+     [
+      "Therefore",
+      "∴"
+     ],
+     [
+      "Contradiction",
+      "proof by contradiction"
+     ],
+     [
+      "Converse"
+     ],
+     [
+      "Induction",
+      "proof by induction"
+     ],
+     [
+      "LI/LD",
+      "li ld",
+      "li or ld"
+     ]
+    ],
+    "one_in_a_krillion": [
+     [
+      "Cauchy-Schwarz",
+      "cauchy schwarz inequality"
+     ],
+     [
+      "Contrapositive"
+     ]
+    ]
+   },
+   "not_accepted": {
+    "note": "We haven't learned that yet",
+    "answers": [
+     [
+      "Linear Combination Lemma"
+     ],
+     [
+      "Direct sum",
+      "independent subspaces",
+      "combining subspaces"
+     ],
+     [
+      "Homomorphism",
+      "linear map",
+      "linear transformation"
+     ],
+     [
+      "Kernel",
+      "null space",
+      "nullspace"
+     ],
+     [
+      "Range space",
+      "range",
+      "image"
+     ],
+     [
+      "Rank-nullity",
+      "rank nullity theorem",
+      "nullity"
+     ],
+     [
+      "Matrix multiplication"
+     ],
+     [
+      "Inverse matrix",
+      "matrix inverse",
+      "invertible"
+     ],
+     [
+      "Determinant",
+      "det"
+     ],
+     [
+      "Eigenvalue",
+      "eigenvalues"
+     ],
+     [
+      "Eigenvector",
+      "eigenvectors"
+     ],
+     [
+      "Change of basis"
+     ],
+     [
+      "Projection"
+     ],
+     [
+      "Gram-Schmidt"
+     ],
+     [
+      "Diagonalization",
+      "diagonalize"
+     ],
+     [
+      "Jordan form"
+     ],
+     [
+      "Similarity",
+      "similar matrices"
+     ]
+    ]
+   },
+   "notes": "Covers Hefferon HW 1-12 (Gauss's method through isomorphisms) plus proof and logic words.",
+   "order": 4
+  },
+  {
+   "prompt": "Name a Korean, Tottenham, or St. Stephen's soccer player",
+   "unlisted_answers": "partial_credit",
+   "tiers": {
+    "plankton": [
+     [
+      "Son Heung-min",
+      "son",
+      "sonny",
+      "heung-min son",
+      "heungmin son",
+      "son heungmin",
+      "hm son",
+      "son hung min",
+      "손흥민"
+     ],
+     [
+      "Harry Kane",
+      "kane"
+     ],
+     [
+      "Camilo Gomez Nieto (St. Stephen's)",
+      "camilo",
+      "gomez",
+      "nieto",
+      "gomez nieto"
+     ],
+     [
+      "Lex Gonzalez (St. Stephen's)",
+      "lex",
+      "gonzalez"
+     ],
+     [
+      "Taj Kumar (St. Stephen's)",
+      "taj",
+      "kumar"
+     ],
+     [
+      "John Kyles III (St. Stephen's)",
+      "john",
+      "kyles",
+      "john kyles"
+     ],
+     [
+      "Evan Lee (St. Stephen's)",
+      "evan",
+      "lee"
+     ],
+     [
+      "Dante Menezes Emidio (St. Stephen's)",
+      "dante",
+      "menezes",
+      "emidio",
+      "menezes emidio"
+     ],
+     [
+      "Josh Mugo (St. Stephen's)",
+      "josh",
+      "mugo",
+      "muggs"
+     ],
+     [
+      "Connor Potts (St. Stephen's)",
+      "connor",
+      "potts"
+     ],
+     [
+      "Noam Shamir (St. Stephen's)",
+      "noam",
+      "shamir"
+     ],
+     [
+      "Nicolas Wang (St. Stephen's)",
+      "nic",
+      "nick",
+      "nicolas",
+      "wang",
+      "nic wang"
+     ],
+     [
+      "Arann Weaver (St. Stephen's)",
+      "arann",
+      "aran",
+      "weaver"
+     ]
+    ],
+    "schooler": [
+     [
+      "Park Ji-sung",
+      "park jisung",
+      "ji-sung park",
+      "박지성"
+     ],
+     [
+      "Kim Min-jae",
+      "kim minjae",
+      "min-jae kim",
+      "김민재"
+     ],
+     [
+      "Lee Kang-in",
+      "lee kangin",
+      "kang-in lee",
+      "이강인"
+     ],
+     [
+      "Hwang Hee-chan",
+      "hwang heechan",
+      "hee-chan hwang",
+      "황희찬"
+     ],
+     [
+      "Gareth Bale",
+      "bale"
+     ],
+     [
+      "Hugo Lloris",
+      "lloris"
+     ],
+     [
+      "Dele Alli",
+      "dele",
+      "alli"
+     ],
+     [
+      "James Maddison",
+      "maddison",
+      "madders"
+     ],
+     [
+      "Cristian Romero",
+      "romero",
+      "cuti romero",
+      "cuti"
+     ],
+     [
+      "Dejan Kulusevski",
+      "kulusevski",
+      "deki"
+     ],
+     [
+      "Richarlison"
+     ],
+     [
+      "Luka Modric",
+      "modric",
+      "modrić"
+     ],
+     [
+      "Micky van de Ven",
+      "van de ven",
+      "vdv"
+     ],
+     [
+      "Pedro Porro",
+      "porro"
+     ],
+     [
+      "Christian Eriksen",
+      "eriksen"
+     ],
+     [
+      "Kyle Walker",
+      "walker"
+     ],
+     [
+      "Kieran Trippier",
+      "trippier"
+     ],
+     [
+      "Jermain Defoe",
+      "defoe"
+     ],
+     [
+      "Peter Crouch",
+      "crouch"
+     ],
+     [
+      "Gary Lineker",
+      "lineker"
+     ],
+     [
+      "Paul Gascoigne",
+      "gascoigne",
+      "gazza"
+     ],
+     [
+      "Beckett Edel (St. Stephen's)",
+      "beckett",
+      "edel"
+     ],
+     [
+      "James Fear (St. Stephen's)",
+      "james",
+      "fear"
+     ],
+     [
+      "Juan Fernández Alguacil Jr (St. Stephen's)",
+      "juan",
+      "fernandez",
+      "fernández",
+      "alguacil",
+      "juan fernandez",
+      "juan jr"
+     ],
+     [
+      "Ben Foster (St. Stephen's)",
+      "ben",
+      "foster"
+     ],
+     [
+      "Brayden Green (St. Stephen's)",
+      "brayden",
+      "green"
+     ],
+     [
+      "Sebastian Palos (St. Stephen's)",
+      "sebastian",
+      "palos"
+     ],
+     [
+      "Jackson Welch (St. Stephen's)",
+      "jackson",
+      "welch"
+     ]
+    ],
+    "rare": [
+     [
+      "Hwang In-beom",
+      "hwang inbeom"
+     ],
+     [
+      "Cho Gue-sung",
+      "cho guesung",
+      "cho kyu-sung",
+      "gue-sung cho",
+      "조규성"
+     ],
+     [
+      "Lee Jae-sung",
+      "lee jaesung"
+     ],
+     [
+      "Ki Sung-yueng",
+      "ki sungyueng",
+      "ki sung-yong",
+      "기성용"
+     ],
+     [
+      "Cha Bum-kun",
+      "cha bumkun",
+      "cha boom",
+      "차범근"
+     ],
+     [
+      "Ahn Jung-hwan",
+      "ahn junghwan",
+      "안정환"
+     ],
+     [
+      "Hong Myung-bo",
+      "hong myungbo",
+      "홍명보"
+     ],
+     [
+      "Park Chu-young",
+      "park chuyoung"
+     ],
+     [
+      "Lee Chung-yong",
+      "lee chungyong"
+     ],
+     [
+      "Koo Ja-cheol",
+      "koo jacheol"
+     ],
+     [
+      "Ji So-yun",
+      "ji soyun"
+     ],
+     [
+      "Hwang Ui-jo",
+      "hwang uijo"
+     ],
+     [
+      "Kim Young-gwon",
+      "kim younggwon"
+     ],
+     [
+      "Lee Seung-woo",
+      "lee seungwoo"
+     ],
+     [
+      "Jeong Woo-yeong",
+      "jeong wooyeong"
+     ],
+     [
+      "Jung Woo-young",
+      "jung wooyoung"
+     ],
+     [
+      "Bae Jun-ho",
+      "bae junho"
+     ],
+     [
+      "Seol Young-woo",
+      "seol youngwoo"
+     ],
+     [
+      "Jo Hyeon-woo",
+      "jo hyeonwoo",
+      "jo hyun-woo"
+     ],
+     [
+      "Kim Moon-hwan",
+      "kim moonhwan"
+     ],
+     [
+      "Paik Seung-ho",
+      "paik seungho",
+      "baek seung-ho"
+     ],
+     [
+      "Lee Tae-seok",
+      "lee taeseok"
+     ],
+     [
+      "Lee Dong-gook",
+      "lee donggook"
+     ],
+     [
+      "Hwang Sun-hong",
+      "hwang sunhong"
+     ],
+     [
+      "Yoo Sang-chul",
+      "yoo sangchul"
+     ],
+     [
+      "Lee Woon-jae",
+      "lee woonjae"
+     ],
+     [
+      "Seol Ki-hyeon",
+      "seol kihyeon"
+     ],
+     [
+      "Kim Nam-il",
+      "kim namil"
+     ],
+     [
+      "Song Chong-gug",
+      "song chonggug"
+     ],
+     [
+      "Choi Yong-soo",
+      "choi yongsoo"
+     ],
+     [
+      "Kim Shin-wook",
+      "kim shinwook"
+     ],
+     [
+      "Lee Keun-ho",
+      "lee keunho"
+     ],
+     [
+      "Kwon Chang-hoon",
+      "kwon changhoon"
+     ],
+     [
+      "Na Sang-ho",
+      "na sangho"
+     ],
+     [
+      "Kim Jin-su",
+      "kim jinsu"
+     ],
+     [
+      "Lee Yong"
+     ],
+     [
+      "Oh Se-hun",
+      "oh sehun"
+     ],
+     [
+      "Glenn Hoddle",
+      "hoddle"
+     ],
+     [
+      "Ledley King",
+      "ledley"
+     ],
+     [
+      "Jimmy Greaves",
+      "greaves"
+     ],
+     [
+      "Ossie Ardiles",
+      "ardiles",
+      "osvaldo ardiles"
+     ],
+     [
+      "Ricky Villa",
+      "ricardo villa"
+     ],
+     [
+      "Teddy Sheringham",
+      "sheringham"
+     ],
+     [
+      "David Ginola",
+      "ginola"
+     ],
+     [
+      "Robbie Keane",
+      "keane"
+     ],
+     [
+      "Dimitar Berbatov",
+      "berbatov"
+     ],
+     [
+      "Rafael van der Vaart",
+      "van der vaart",
+      "vdv rafael"
+     ],
+     [
+      "Jan Vertonghen",
+      "vertonghen"
+     ],
+     [
+      "Toby Alderweireld",
+      "alderweireld"
+     ],
+     [
+      "Mousa Dembele",
+      "dembele",
+      "dembélé"
+     ],
+     [
+      "Danny Rose"
+     ],
+     [
+      "Moussa Sissoko",
+      "sissoko"
+     ],
+     [
+      "Lucas Moura",
+      "lucas",
+      "moura"
+     ],
+     [
+      "Erik Lamela",
+      "lamela"
+     ],
+     [
+      "Eric Dier",
+      "dier"
+     ],
+     [
+      "Ben Davies"
+     ],
+     [
+      "Guglielmo Vicario",
+      "vicario"
+     ],
+     [
+      "Yves Bissouma",
+      "bissouma"
+     ],
+     [
+      "Rodrigo Bentancur",
+      "bentancur",
+      "lolo"
+     ],
+     [
+      "Pape Matar Sarr",
+      "sarr",
+      "pape sarr"
+     ],
+     [
+      "Dominic Solanke",
+      "solanke"
+     ],
+     [
+      "Brennan Johnson"
+     ],
+     [
+      "Destiny Udogie",
+      "udogie"
+     ],
+     [
+      "Mohammed Kudus",
+      "kudus"
+     ],
+     [
+      "Xavi Simons",
+      "simons"
+     ],
+     [
+      "Lucas Bergvall",
+      "bergvall"
+     ],
+     [
+      "Archie Gray"
+     ],
+     [
+      "Aaron Lennon",
+      "lennon"
+     ],
+     [
+      "Michael Dawson",
+      "dawson"
+     ],
+     [
+      "Tom Huddlestone",
+      "huddlestone"
+     ],
+     [
+      "Emmanuel Adebayor",
+      "adebayor"
+     ],
+     [
+      "Tanguy Ndombele",
+      "ndombele"
+     ],
+     [
+      "Giovani Lo Celso",
+      "lo celso"
+     ],
+     [
+      "Steven Bergwijn",
+      "bergwijn"
+     ],
+     [
+      "Pierre-Emile Hojbjerg",
+      "hojbjerg",
+      "højbjerg"
+     ],
+     [
+      "Harry Winks",
+      "winks"
+     ],
+     [
+      "Oliver Skipp",
+      "skipp"
+     ],
+     [
+      "Sergio Reguilon",
+      "reguilon",
+      "reguilón"
+     ],
+     [
+      "Timo Werner",
+      "werner"
+     ],
+     [
+      "Steve Perryman",
+      "perryman"
+     ],
+     [
+      "Pat Jennings",
+      "jennings"
+     ],
+     [
+      "Gary Mabbutt",
+      "mabbutt"
+     ],
+     [
+      "Chris Waddle",
+      "waddle"
+     ],
+     [
+      "Darren Anderton",
+      "anderton"
+     ],
+     [
+      "Sol Campbell"
+     ],
+     [
+      "Michael Carrick",
+      "carrick"
+     ],
+     [
+      "Danny Blanchflower",
+      "blanchflower"
+     ],
+     [
+      "Dave Mackay",
+      "mackay"
+     ],
+     [
+      "Clint Dempsey",
+      "dempsey"
+     ],
+     [
+      "DeAndre Yedlin",
+      "yedlin"
+     ],
+     [
+      "Kasey Keller"
+     ],
+     [
+      "Brad Friedel",
+      "friedel"
+     ],
+     [
+      "Angel Bustos Amian (St. Stephen's)",
+      "angel",
+      "bustos",
+      "amian",
+      "bustos amian"
+     ],
+     [
+      "Palmer Edel (St. Stephen's)",
+      "palmer",
+      "edel"
+     ],
+     [
+      "Ian Kim (St. Stephen's)",
+      "ian",
+      "kim"
+     ],
+     [
+      "Jaime Lazcano Martinez (St. Stephen's)",
+      "jaime",
+      "lazcano",
+      "martinez",
+      "lazcano martinez"
+     ],
+     [
+      "Kyle Lee (St. Stephen's)",
+      "kyle",
+      "lee"
+     ],
+     [
+      "Fletcher Ricci (St. Stephen's)",
+      "fletcher",
+      "ricci"
+     ],
+     [
+      "Jacob Smith (St. Stephen's)",
+      "jacob",
+      "smith"
+     ],
+     [
+      "Tomas Aczel (St. Stephen's)",
+      "tomas",
+      "tomás",
+      "aczel"
+     ],
+     [
+      "Evan English (St. Stephen's)",
+      "evan",
+      "english"
+     ],
+     [
+      "Gavin Green (St. Stephen's)",
+      "gavin",
+      "green"
+     ],
+     [
+      "Pax Mahoney-Aroch (St. Stephen's)",
+      "pax",
+      "mahoney-aroch",
+      "mahoney aroch",
+      "mahoney",
+      "aroch"
+     ],
+     [
+      "Xander Mahoney-Aroch (St. Stephen's)",
+      "xander",
+      "mahoney-aroch",
+      "mahoney aroch",
+      "mahoney",
+      "aroch"
+     ],
+     [
+      "Wyatt Steitz (St. Stephen's)",
+      "wyatt",
+      "steitz"
+     ],
+     [
+      "Andy Wang (St. Stephen's)",
+      "andy",
+      "wang"
+     ],
+     [
+      "Hugo (St. Stephen's)",
+      "hugo"
+     ],
+     [
+      "Wyatt Levine (St. Stephen's)",
+      "wyatt",
+      "levine"
+     ],
+     [
+      "John Peters (St. Stephen's)",
+      "john",
+      "peters"
+     ]
+    ],
+    "deep_cut": [
+     [
+      "Yang Min-hyeok",
+      "yang minhyeok",
+      "yang min-hyuk"
+     ],
+     [
+      "Lee Young-pyo",
+      "lee youngpyo",
+      "이영표"
+     ],
+     [
+      "Jurgen Klinsmann",
+      "klinsmann",
+      "jürgen klinsmann"
+     ],
+     [
+      "Jens Castrop",
+      "castrop"
+     ],
+     [
+      "Casey Phair",
+      "phair"
+     ],
+     [
+      "Kim Ji-soo",
+      "kim jisoo"
+     ],
+     [
+      "Hong Hyun-seok",
+      "hong hyunseok"
+     ],
+     [
+      "Jeong Sang-bin",
+      "jeong sangbin"
+     ],
+     [
+      "Um Ji-sung",
+      "um jisung"
+     ],
+     [
+      "Song Min-kyu",
+      "song minkyu"
+     ],
+     [
+      "Cho Yu-min",
+      "cho yumin"
+     ],
+     [
+      "Lee Han-beom",
+      "lee hanbeom"
+     ],
+     [
+      "Joo Min-kyu",
+      "joo minkyu"
+     ],
+     [
+      "Lee Myung-jae",
+      "lee myungjae"
+     ],
+     [
+      "Park Yong-woo",
+      "park yongwoo"
+     ],
+     [
+      "Jong Tae-se",
+      "jong taese"
+     ],
+     [
+      "Ji Dong-won",
+      "ji dongwon"
+     ],
+     [
+      "Roberto Soldado",
+      "soldado"
+     ],
+     [
+      "Vincent Janssen",
+      "janssen"
+     ],
+     [
+      "Fernando Llorente",
+      "llorente"
+     ],
+     [
+      "Clinton N'Jie",
+      "njie"
+     ],
+     [
+      "Georges-Kevin Nkoudou",
+      "nkoudou"
+     ],
+     [
+      "Bryan Gil"
+     ],
+     [
+      "Ryan Sessegnon",
+      "sessegnon"
+     ],
+     [
+      "Djed Spence",
+      "spence"
+     ],
+     [
+      "Radu Dragusin",
+      "dragusin"
+     ],
+     [
+      "Wilson Odobert",
+      "odobert"
+     ],
+     [
+      "Mathys Tel",
+      "tel"
+     ],
+     [
+      "Kevin Danso",
+      "danso"
+     ],
+     [
+      "Fraser Forster",
+      "forster"
+     ],
+     [
+      "Antonin Kinsky",
+      "kinsky"
+     ],
+     [
+      "Joe Rodon",
+      "rodon"
+     ],
+     [
+      "Japhet Tanganga",
+      "tanganga"
+     ],
+     [
+      "Troy Parrott",
+      "parrott"
+     ],
+     [
+      "Ryan Mason"
+     ],
+     [
+      "Emilio Hong (St. Stephen's)",
+      "emilio",
+      "hong"
+     ],
+     [
+      "Narciso Campos Gomez (St. Stephen's)",
+      "narciso",
+      "campos",
+      "gomez",
+      "campos gomez"
+     ]
+    ],
+    "one_in_a_krillion": [
+     [
+      "Oh Hyeon-gyu",
+      "oh hyeongyu",
+      "oh hyun-gyu",
+      "hyunggyu",
+      "hyeon-gyu",
+      "hyeongyu",
+      "hyungyu",
+      "hyun gyu",
+      "오현규"
+     ],
+     [
+      "Kim Seung-gyu",
+      "kim seunggyu",
+      "seung-gyu",
+      "seunggyu",
+      "김승규"
+     ]
+    ]
+   },
+   "not_accepted": {
+    "note": "Manager, not a player",
+    "answers": [
+     [
+      "Ange Postecoglou",
+      "ange",
+      "postecoglou"
+     ],
+     [
+      "Mauricio Pochettino",
+      "pochettino",
+      "poch"
+     ],
+     [
+      "Jose Mourinho",
+      "mourinho"
+     ],
+     [
+      "Antonio Conte",
+      "conte"
+     ],
+     [
+      "Thomas Frank"
+     ],
+     [
+      "Harry Redknapp",
+      "redknapp"
+     ]
+    ]
+   },
+   "notes": "Korea + Spurs core bank plus the St. Stephen's roster (12th = plankton, 11th = schooler, 10th/9th = rare, Emilio and Narciso = deep cut). St. Stephen's players also match on first or last name alone. A name shared by several players (Lee, Kim, Green, Wang, Hugo, John, Evan, Wyatt, Edel, Gomez) scores the EASIEST tier it matches. One-in-a-krillion assumes 'Hyunggyu' = Oh Hyeon-gyu.",
+   "full_lists": {
+    "tottenham": "https://en.wikipedia.org/wiki/List_of_Tottenham_Hotspur_F.C._players",
+    "korea": "https://en.wikipedia.org/wiki/South_Korea_national_football_team"
+   },
+   "order": 5
+  },
+  {
+   "prompt": "Name an alcoholic beverage",
+   "unlisted_answers": "partial_credit",
+   "tiers": {
+    "plankton": [
+     [
+      "Beer"
+     ],
+     [
+      "Vodka"
+     ],
+     [
+      "Wine",
+      "red wine",
+      "white wine"
+     ],
+     [
+      "Tequila"
+     ],
+     [
+      "Whiskey",
+      "whisky"
+     ],
+     [
+      "Rum"
+     ],
+     [
+      "Shots",
+      "shot"
+     ],
+     [
+      "White Claw",
+      "whiteclaw"
+     ]
+    ],
+    "schooler": [
+     [
+      "Soju",
+      "소주"
+     ],
+     [
+      "Gin"
+     ],
+     [
+      "Champagne"
+     ],
+     [
+      "Margarita"
+     ],
+     [
+      "Sake"
+     ],
+     [
+      "Hard seltzer",
+      "seltzer",
+      "truly"
+     ],
+     [
+      "Cider",
+      "hard cider"
+     ],
+     [
+      "Mojito"
+     ],
+     [
+      "Martini"
+     ],
+     [
+      "Prosecco"
+     ],
+     [
+      "Bud Light"
+     ],
+     [
+      "Smirnoff"
+     ],
+     [
+      "Jack Daniel's",
+      "jack daniels",
+      "jack"
+     ],
+     [
+      "Fireball"
+     ],
+     [
+      "Twisted Tea"
+     ],
+     [
+      "Corona"
+     ],
+     [
+      "Modelo"
+     ],
+     [
+      "Michelob Ultra",
+      "mich ultra"
+     ],
+     [
+      "Coors",
+      "coors light"
+     ],
+     [
+      "Natty Light",
+      "natural light"
+     ],
+     [
+      "Busch Light",
+      "busch"
+     ],
+     [
+      "Heineken"
+     ],
+     [
+      "Stella",
+      "stella artois"
+     ]
+    ],
+    "rare": [
+     [
+      "Makgeolli",
+      "막걸리"
+     ],
+     [
+      "Cass"
+     ],
+     [
+      "Hite"
+     ],
+     [
+      "Jinro"
+     ],
+     [
+      "Chamisul"
+     ],
+     [
+      "Somaek",
+      "soju bomb"
+     ],
+     [
+      "Bourbon"
+     ],
+     [
+      "Scotch"
+     ],
+     [
+      "Brandy"
+     ],
+     [
+      "Cognac"
+     ],
+     [
+      "Mezcal"
+     ],
+     [
+      "Absinthe"
+     ],
+     [
+      "Jägermeister",
+      "jager",
+      "jagermeister"
+     ],
+     [
+      "Baileys"
+     ],
+     [
+      "Kahlúa",
+      "kahlua"
+     ],
+     [
+      "Malibu"
+     ],
+     [
+      "Hennessy",
+      "henny"
+     ],
+     [
+      "Patrón",
+      "patron"
+     ],
+     [
+      "Don Julio"
+     ],
+     [
+      "Casamigos"
+     ],
+     [
+      "Tito's",
+      "titos"
+     ],
+     [
+      "Grey Goose"
+     ],
+     [
+      "Everclear"
+     ],
+     [
+      "Four Loko"
+     ],
+     [
+      "Mike's Hard Lemonade",
+      "mikes hard"
+     ],
+     [
+      "Smirnoff Ice"
+     ],
+     [
+      "Sangria"
+     ],
+     [
+      "Mimosa"
+     ],
+     [
+      "Aperol spritz",
+      "aperol",
+      "spritz"
+     ],
+     [
+      "Piña colada",
+      "pina colada"
+     ],
+     [
+      "Daiquiri"
+     ],
+     [
+      "Cosmopolitan",
+      "cosmo"
+     ],
+     [
+      "Old fashioned"
+     ],
+     [
+      "Long Island iced tea",
+      "long island"
+     ],
+     [
+      "Moscow mule"
+     ],
+     [
+      "Bloody Mary"
+     ],
+     [
+      "Negroni"
+     ],
+     [
+      "Manhattan"
+     ],
+     [
+      "Whiskey sour"
+     ],
+     [
+      "Espresso martini"
+     ],
+     [
+      "Paloma"
+     ],
+     [
+      "Ranch water"
+     ],
+     [
+      "Shiner Bock",
+      "shiner"
+     ],
+     [
+      "Lone Star"
+     ],
+     [
+      "Port"
+     ],
+     [
+      "Sherry"
+     ],
+     [
+      "Vermouth"
+     ],
+     [
+      "Mead"
+     ],
+     [
+      "Cocktails",
+      "cocktail"
+     ],
+     [
+      "Jungle juice"
+     ]
+    ],
+    "deep_cut": [
+     [
+      "Baijiu",
+      "白酒"
+     ],
+     [
+      "Tsingtao"
+     ],
+     [
+      "Arak"
+     ],
+     [
+      "Goldstar"
+     ],
+     [
+      "Ouzo"
+     ],
+     [
+      "Raki",
+      "rakija",
+      "rakia"
+     ],
+     [
+      "Slivovitz"
+     ],
+     [
+      "Grappa"
+     ],
+     [
+      "Limoncello"
+     ],
+     [
+      "Pisco"
+     ],
+     [
+      "Cachaça",
+      "cachaca"
+     ],
+     [
+      "Caipirinha"
+     ],
+     [
+      "Shochu"
+     ],
+     [
+      "Umeshu"
+     ],
+     [
+      "Chuhai"
+     ],
+     [
+      "Cheongju"
+     ],
+     [
+      "Bokbunja"
+     ],
+     [
+      "Terra"
+     ],
+     [
+      "Kloud"
+     ],
+     [
+      "Chum Churum"
+     ],
+     [
+      "Sake bomb"
+     ],
+     [
+      "Goldschläger",
+      "goldschlager"
+     ],
+     [
+      "Malört",
+      "malort"
+     ],
+     [
+      "Moonshine"
+     ],
+     [
+      "Mai tai"
+     ]
+    ],
+    "one_in_a_krillion": [
+     [
+      "Maotai",
+      "moutai",
+      "kweichow moutai",
+      "mao tai",
+      "茅台"
+     ]
+    ]
+   },
+   "notes": "'Mai tai' sits in deep cut on purpose so it doesn't fuzzy-match into Maotai. Check that one by hand.",
+   "order": 6
+  },
+  {
+   "prompt": "Name a Nic Wang or Isaac Lin scandal/incident",
+   "unlisted_answers": "reject",
+   "tiers": {
+    "plankton": [
+     [
+      "Getting gated (Nic)",
+      "gated",
+      "getting gated",
+      "nic getting gated"
+     ],
+     [
+      "Dolomites homelessness (Isaac)",
+      "dolomites",
+      "homeless",
+      "dolomites method",
+      "slept on benches",
+      "sleeping on benches",
+      "no hotel"
+     ]
+    ],
+    "schooler": [
+    [
+      "Nic ignoring Oehler",
+      "oehler",
+      "telling oehler to leave",
+      "kicked oehler out",
+      "told oehler to leave"
+     ],
+     [
+      "Setting off the fire alarm in 9th grade (Nic)",
+      "fire alarm",
+      "setting off the fire alarm",
+      "pulled the fire alarm",
+      "9th grade fire alarm"
+     ],
+     [
+      "Skipping a whole school day and not going to the health center (Nic)",
+      "skipping school",
+      "skipped school",
+      "skipping the whole day",
+      "didn't go to the health center"
+     ],
+     [
+      "Mao hat (Isaac)",
+      "mao hat",
+      "mao",
+      "mao cap"
+     ]
+    ],
+    "rare": [
+     [
+      "Nic Sneaking to Sam's birthday",
+      "sam's birthday",
+      "sams birthday",
+      "sneaking out",
+      "snuck to sams birthday"
+     ],
+     [
+      "74 points",
+      "74",
+      "74 points",
+      "seventy four points",
+      "seventy four"
+     ],
+     [
+      "Rhett kicking Nic out of their room",
+      "rhett",
+      "kicked out",
+      "rhett kicking him out",
+      "kicked out of his room"
+     ],
+     [
+      "Isaac's AI glasses",
+      "ai glasses",
+      "meta glasses",
+      "ray ban meta",
+      "smart glasses"
+     ],
+     [
+      "Isaac's Rubber Ducky essay method",
+      NEW
+     ],
+    ],
+    "deep_cut": [
+     [
+      "Nic showing Yoobeen kegstand video",
+      "yoobeen",
+      "kegstand",
+      "keg stand",
+      "kegstand video",
+      "yoobeen kegstand"
+     ],
+     [
+      "Isaac submitting the CS job application",
+      "cs application",
+      "computer science application",
+      "submitting cs application"
+     ],
+     [
+      "Nic telling Athena's mom to call the school",
+      "athena's mom",
+      "athenas mom",
+      "taking power",
+      "took power"
+     ],
+     [
+      "The Chengdu bar (Isaac and Nic)",
+      "chengdu",
+      "chengdu bar"
+     ],
+     [
+      "Isaac falls asleep during movie with you"
+      NEW
+     ]
+    ],
+    "one_in_a_krillion": [
+        [
+      "Nic being a bitch-ass social democrat senior year after larping maoism 9-11th grade"
+     ],
+     [
+      "Isaac walking ahead of you the whole time at the mall"
+      NEW
+     ]
+    ]
+   },
+   "notes": "Tiered by how often each came up in your texts. Some are guesses since I only know the items you listed by name.",
+   "order": 7
+  },
+  {
+   "prompt": "Name a date we've been on / something we've done together",
+   "unlisted_answers": "reject",
+   "tiers": {
+    "plankton": [
+     [
+      "Linear studying",
+      "studying linear",
+      "linear",
+      "linearizing",
+      "linear homework",
+      "linear hw",
+      "doing linear",
+      "studying"
+     ],
+     [
+      "Padel",
+      "paddle"
+     ],
+     [
+      "GamePigeon",
+      "game pigeon",
+      "gamepigeon games"
+     ],
+     [
+      "Walking around campus",
+      "walking around school",
+      "walking on campus",
+      "walk around campus",
+      "walking"
+     ]
+    ],
+    "schooler": [
+     [
+      "Mozart's Cafe",
+      "mozarts",
+      "mozart's",
+      "mozart's coffee",
+      "mozarts coffee",
+      "studying linear at mozarts",
+      "linear at mozarts"
+     ],
+     [
+      "Student center linear studying",
+      "student center",
+      "linear at the student center",
+      "studying at the student center"
+     ],
+     [
+      "Oberle study sessions",
+      "oberle",
+      "oberle study session",
+      "oberle's study session",
+      "study session",
+      "c4 study session"
+     ],
+     [
+      "Roblox"
+     ],
+     [
+      "FaceTiming",
+      "facetime",
+      "ft",
+      "facetiming linear",
+      "ft linear",
+      "calling"
+     ],
+     [
+      "Mario Karting",
+      "mario kart",
+      "mario karting",
+      "mariokart",
+      "go karts",
+      "go-karting"
+     ]
+    ],
+    "rare": [
+     [
+      "Busan beach-going",
+      "beach",
+      "busan beach",
+      "haeundae",
+      "going to the beach",
+      "beach in busan",
+      "haeundae beach",
+      "Busan swimming",
+      "swimming",
+      "swimming in busan",
+      "swimming at the beach"
+     ],
+     [
+      "Studying linear at Merit Cafe",
+      "merit",
+      "merit cafe",
+      "merit coffee",
+      "linear at merit"
+     ],
+     [
+      "Miles's mom's birthday at Uchiba",
+      "uchiba",
+      "uchi",
+      "miles moms birthday",
+      "miles mom's birthday",
+      "miles moms bday",
+      "miles's mom's party",
+      "birthday party"
+     ],
+     [
+      "ACL",
+      "austin city limits",
+      "acl fest"
+     ],
+     [
+      "Peter Pan Mini Golf",
+      "peter pan",
+      "mini golf",
+      "putt putt",
+      "minigolf"
+     ],
+     [
+      "Beer pong"
+     ],
+     [
+      "Karaoke",
+      NEW (we did this in austin and in busan)
+     ]
+    ],
+    "deep_cut": [
+     [
+      "68 Degrees",
+      "68",
+      "sixty eight degrees",
+      "68°"
+     ],
+     [
+      "Vera Cruz",
+      "veracruz",
+      "veracruz all natural",
+      "vera cruz tacos",
+      "the taqueria",
+      "taqueria",
+      "tacos"
+     ],
+     [
+      "Scootering",
+      "bird",
+      "lime",
+      "bird scooters",
+      "lime scooters",
+      "electric scooters",
+      "e-scooters",
+      "scooters"
+     ],
+     [
+      "Busan salmon restaurant",
+      "salmon",
+      "salmon restaurant",
+      "busan salmon"
+     ],
+     [
+      "Watching Ordet",
+      "ordet",
+      "movie night",
+      "watching a movie"
+     ],
+     [
+      "Pre-gaming ACL at my house with cocktails",
+      "pregaming",
+      "pregame",
+      "pre-gaming",
+      "pregaming acl",
+      "cocktails",
+      "pregame at your house"
+     ],
+     [
+      "Jenna/Athena's party",
+      "jenna's party",
+      "athena's party",
+      "jennas party",
+      "athenas party",
+      "halloween party",
+      "the party"
+     ],
+     [
+      "Busan animals",
+      "lizards",
+      "pigs",
+      "birds",
+      "busan lizards",
+      "busan pigs",
+      "animals"
+     ],
+     [
+      "Riding to the health center",
+      "health center",
+      "the health center"
+     ],
+     [
+      "7 Theme Cafe",
+      "7themecafe",
+      "seven theme cafe",
+      "theme cafe"
+     ],
+     [
+      "Fortune-teller",
+      NEW
+     ]
+    ],
+    "one_in_a_krillion": [
+     [
+      "Getting trapped in a parking garage",
+      "parking garage",
+      "trapped in a parking garage",
+      "stuck in a parking garage",
+      "getting stuck in the parking garage"
+     ],
+     [
+      "Getting a new ACL wristband",
+      "wristband",
+      "wristband getting cut",
+      "acl wristband",
+      "new wristband",
+      "cut wristband",
+      "getting our wristband cut"
+     ]
+    ]
+   },
+   "not_accepted": {
+    "note": "Not yet. Next time?",
+    "answers": [
+     [
+      "Hoco",
+      "homecoming"
+     ],
+     [
+      "Austin FC game",
+      "austin fc",
+      "soccer game"
+     ],
+     [
+      "The school play",
+      "the play"
+     ],
+     [
+      "Oberle's game night",
+      "monopoly",
+      "game night"
+     ],
+     [
+      "Interstellar"
+     ]
+    ]
+   },
+   "notes": "Tiers are my guess at how memorable each one is. Move 'riding to the health center' if that night is still a sore spot.",
+   "order": 8
+  }
+ ],
+ "final_question": {
+  "prompt": "Would you let me be your boyfriend?",
+  "timer": null,
+  "accepted": [
+   "yes",
+   "yess",
+   "yesss",
+   "yessss",
+   "ye",
+   "yee",
+   "yea",
+   "yeah",
+   "yeahh",
+   "ya",
+   "yah",
+   "yep",
+   "yup",
+   "yuh",
+   "yuhh",
+   "yessir",
+   "yes sir",
+   "yes please",
+   "of course",
+   "ofc",
+   "obviously",
+   "obv",
+   "duh",
+   "absolutely",
+   "definitely",
+   "def",
+   "for sure",
+   "fs",
+   "sure",
+   "sure thing",
+   "ok",
+   "okay",
+   "okey dokey",
+   "okidoki",
+   "k",
+   "kk",
+   "totally",
+   "certainly",
+   "always",
+   "i do",
+   "id love to",
+   "i'd love to",
+   "i would love to",
+   "love to",
+   "hell yes",
+   "hell yeah",
+   "heck yes",
+   "heck yeah",
+   "fuck yes",
+   "fuck yeah",
+   "bet",
+   "say less",
+   "fr",
+   "frfr",
+   "indeed",
+   "affirmative",
+   "aye",
+   "mhm",
+   "mhmm",
+   "uh huh",
+   "100",
+   "100%",
+   "why not",
+   "no doubt",
+   "no question",
+   "no brainer",
+   "i thought youd never ask",
+   "thought you'd never ask",
+   "finally",
+   "took you long enough",
+   "si",
+   "sí",
+   "oui",
+   "ja",
+   "da",
+   "hai",
+   "ken",
+   "כן",
+   "네",
+   "예",
+   "응",
+   "그래",
+   "ne",
+   "eung",
+   "geurae",
+   "👍",
+   "❤️",
+   "💖",
+   "💕",
+   "🫶",
+   "🥰",
+   "✅",
+   "💯",
+   "😍"
+  ],
+  "rejected_examples": [
+   "no",
+   "nah",
+   "nope",
+   "never",
+   "not",
+   "no way",
+   "maybe",
+   "idk",
+   "i don't know",
+   "let me think",
+   "ask me later",
+   "absolutely not",
+   "of course not",
+   "hell no",
+   "לא",
+   "아니",
+   "아니요",
+   "싫어"
+  ],
+  "rules": [
+   "Strip punctuation and collapse repeated letters before matching (yessss -> yes).",
+   "Reject if the answer contains a negation (no, nah, not, never, nope, don't, can't, won't, idk, maybe), after first removing the positive phrases 'why not', 'no doubt', 'no question', 'no brainer', 'never ask'.",
+   "Accept if the whole answer matches, or starts with, an accepted phrase.",
+   "Accepted scores One in a Krillion. Anything else scores 0 and ends the game normally (no retry loop)."
+  ],
+  "order": 9
+ },
+ "rules": {
+  "timer": "none on any question",
+  "shared_aliases": "if an answer matches entries in several tiers, score the easiest (lowest) tier",
+  "unlisted": {
+   "reject": "0 points",
+   "partial_credit": "any non-empty answer not on the list scores schooler (30)"
+  },
+  "not_accepted": "0 points and show that prompt's note"
+ }
+}
