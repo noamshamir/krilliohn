@@ -8,6 +8,9 @@ export const TIERS = {
   deepcut: { name: 'Deep Cut', score: 85, emoji: '🏮', color: '#9d7bff', blurb: 'True obscurity. Few go this deep.' },
   krillion: { name: 'One in a Krilliohn', score: 100, emoji: '🌟', color: '#ffd166', blurb: 'The designated gem. Trench floor.' },
 };
+// Purely visual, as in the original: the "Too Clever · 15" line in the descent
+// ladder between Plankton and Schooler. No answer scores it.
+export const LADDER = [['plankton', TIERS.plankton], ['tooclever', { name: 'Too Clever', score: 15, color: '#ff9f43' }], ...Object.entries(TIERS).slice(1)];
 export const ROUNDS = 9;
 export const PREVIEW_MS = 3000; // "the clock starts in 3" countdown, as in the original
 export const ROUND_MS = 50000; // 50 seconds per answer (the original was 25)

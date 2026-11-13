@@ -1,6 +1,6 @@
 import { CONFIG } from './config.mjs';
 import DATA from './answers.mjs';
-import { TIERS, BANDS, ROUNDS, MAX_SCORE, METRES_PER_POINT, FLOOR_DEPTH, ROUND_MS, PREVIEW_MS, bandFor, shareText } from './rules.mjs';
+import { TIERS, LADDER, BANDS, ROUNDS, MAX_SCORE, METRES_PER_POINT, FLOOR_DEPTH, ROUND_MS, PREVIEW_MS, bandFor, shareText } from './rules.mjs';
 import { matchGuess, judgeFinal, normalize, TIER_ORDER, TIER_ID } from './matcher.mjs';
 import { Ocean } from './ocean.mjs';
 import { Sound } from './sound.mjs';
@@ -78,7 +78,7 @@ function animateScore(from,to,gold=false,fromDepth=from*METRES_PER_POINT,toDepth
 async function plunge(result,oldScore,oldDepth){
   setPhase('plunge');document.body.dataset.tier=result.tier||'miss';visualScore=oldScore;updateHud();scene.roundIndex=game.round;
   const fall=$('falling-answer'),ladder=$('tier-ladder');fall.textContent=result.answer?`“${result.answer.toUpperCase()}”`:'';fall.style.color=TIERS[result.tier]?.color||'#7d93b8';fall.style.setProperty('--chip-color',TIERS[result.tier]?.color||'#7d93b8');
-  ladder.innerHTML=result.tier?Object.entries(TIERS).map(([id,t])=>`<div class="tier-line" data-tier="${id}" data-score="${t.score}" style="--line-color:${t.color}"><span>${tierImage(id)}${t.name.toUpperCase()} · ${t.score}</span></div>`).join(''):'';
+  ladder.innerHTML=result.tier?LADDER.map(([id,t])=>`<div class="tier-line" data-tier="${id}" data-score="${t.score}" style="--line-color:${t.color}"><span>${tierImage(id)}${t.name.toUpperCase()} · ${t.score}</span></div>`).join(''):'';
   const travel=result.depthAfter-oldDepth,duration=testMode?80:DROP_MS[result.kind==='yes'?'yes':result.tier||'miss'],began=performance.now();let lastPassed=-1;
   if(result.tier)sound.event('sink');else{sound.event('miss');$('game').classList.add('shake');setTimeout(()=>$('game').classList.remove('shake'),500);}
   await new Promise(resolve=>{const frame=t=>{const p=Math.min(1,(t-began)/duration),e=easeInOut(p);scene.drop(oldDepth,result,p);const sway=result.tier==='plankton'?36*Math.sin(p*7)*(1-.25*p):Math.sin(p*(result.tier==='krillion'?24:16))*(1-p)*(result.tier==='krillion'?26:14);fall.style.left=`calc(50% - 24px + ${sway}px)`;fall.style.rotate=(sway*(result.tier==='plankton'?.55:.4))+'deg';fall.style.top=(scene.layout().height/2-60)+'px';

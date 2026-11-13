@@ -91,7 +91,9 @@ try {
   assert.equal((await state(page)).phase, 'answering');
   await advance(page, 10000);
   near((await state(page)).seconds, 40, 'clock counts down');
-  log.push(await answer(page, 'chain chomp')); await descend(page);
+  log.push(await answer(page, 'chain chomp'));
+  assert.deepEqual(await page.evaluate(() => [...document.querySelectorAll('#tier-ladder .tier-line')].map(l => l.textContent.trim())), ['PLANKTON · 10', 'TOO CLEVER · 15', 'SCHOOLER · 30', 'RARE · 60', 'DEEP CUT · 85', 'ONE IN A KRILLIOHN · 100'], 'descent ladder includes the Too Clever line');
+  await descend(page);
 
   await toAnswering(page, 1);
   await rejected(page, 'Ailee', '“Ailee”: no echo. try again');

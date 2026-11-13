@@ -209,7 +209,7 @@
    "order": 1
   },
   {
-   "prompt": "Name a K-pop singer (fathers of the genre count)",
+   "prompt": "Name a K-pop singer",
    "unlisted_answers": "partial_credit",
    "tiers": {
     "plankton": [
@@ -2986,7 +2986,6 @@
       "homeless",
       "dolomites method",
       "slept on benches",
-      "sleeping on benches",
       "no hotel"
      ]
     ],
@@ -3349,8 +3348,6 @@
       "getting our fortunes told",
       "getting our fortune told",
       "fortune reading",
-      "saju",
-      "사주",
       "tarot",
       "tarot reading",
       "palm reading"

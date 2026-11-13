@@ -20,7 +20,7 @@ const expectMatch = (q, guess, answer, tier) => {
 
 test('prompts are the nine fixed prompts, in order', () => {
   assert.deepEqual([...DATA.questions.map(q => q.prompt), DATA.final.prompt], [
-    'Name a Mario Kart item', 'Name a K-pop singer (fathers of the genre count)', "Name a GamePigeon game we've played", "Name a linear algebra term we've learned", "Name a Korean, Tottenham, or St. Stephen's soccer player", 'Name an alcoholic beverage', 'Name a Nic Wang or Isaac Lin scandal/incident', "Name a date we've been on / something we've done together", 'Would you let me be your boyfriend?',
+    'Name a Mario Kart item', 'Name a K-pop singer', "Name a GamePigeon game we've played", "Name a linear algebra term we've learned", "Name a Korean, Tottenham, or St. Stephen's soccer player", 'Name an alcoholic beverage', 'Name a Nic Wang or Isaac Lin scandal/incident', "Name a date we've been on / something we've done together", 'Would you let me be your boyfriend?',
   ]);
   assert.equal(ROUNDS, 9);
 });
