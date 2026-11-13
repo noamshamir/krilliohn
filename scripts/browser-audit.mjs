@@ -15,6 +15,7 @@ const state = page => page.evaluate(() => JSON.parse(window.render_game_to_text(
 const phaseIs = (page, ...phases) => page.waitForFunction(list => list.includes(JSON.parse(window.render_game_to_text()).phase), phases);
 const advance = (page, ms) => page.evaluate(ms => window.advanceTime(ms), ms);
 const noHorizontalScroll = async page => assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'no horizontal scroll');
+const squash = text => String(text).replace(/\s+/g, ' ').trim();
 const near = (actual, expected, label) => assert.ok(Math.abs(actual - expected) <= 1, `${label}: ${actual} vs ${expected}`);
 
 async function watch(page, label) {
@@ -120,7 +121,7 @@ try {
   assert.equal(yes.targetDepth, 9000, 'depth meter goes to the very bottom');
   assert.deepEqual(yes.results.map(r => r.score), [100, 10, 100, 100, 100, 85, 30, 100, 100]);
   assert.ok(await page.locator('.ending-yes').isVisible());
-  assert.ok((await page.locator('#results').innerText()).includes(CONFIG.yesMessage));
+  assert.ok(squash(await page.locator('#results').innerText()).includes(squash(CONFIG.yesMessage)), 'yesMessage shown');
   await page.screenshot({ path: `${output}/yes-ending.png` });
   await page.locator('#copy-result').click();
   const shared = await page.evaluate(() => navigator.clipboard.readText());
@@ -186,7 +187,7 @@ try {
   assert.equal(other.ending, 'normal');
   assert.deepEqual(other.results.map(r => r.score), [10, 0, 30, 10, 10, 0, 10, 10, 0]);
   assert.ok(await page.locator('.ending-normal').isVisible());
-  assert.ok((await page.locator('#results').innerText()).includes(CONFIG.neutralMessage));
+  assert.ok(squash(await page.locator('#results').innerText()).includes(squash(CONFIG.neutralMessage)), 'neutralMessage shown');
   await page.screenshot({ path: `${output}/normal-ending.png` });
   console.log('Clock run:\n  ' + log.join('\n  '));
 

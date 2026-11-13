@@ -199,17 +199,19 @@ body[data-phase="done"] .mascot{z-index:15}
 .landing .land-typed{font-size:15px;letter-spacing:.1em;line-height:1.5;color:#5f7698;margin:4px 0 0}
 .landing .land-typed:empty{display:none}
 .ending{margin:22px 0 6px;padding:20px 18px 18px;border:2px solid #1b3050;background:#0b1526d9;box-shadow:0 0 0 2px #060d1a}
-.ending-message{font-size:22px;line-height:1.45;margin:0;white-space:pre-line}
-.ending-sign{font-size:18px;letter-spacing:.12em;color:var(--muted);margin:14px 0 0;text-align:right}
+.ending-message{font-size:22px;line-height:1.5;margin:0;text-align:left}.ending-message p{margin:0 0 .85em}.ending-message p:last-child{margin-bottom:0}
+.ending-sign{font-size:20px;line-height:1.4;letter-spacing:.08em;color:var(--muted);margin:16px 0 0;text-align:right}
 .ending-yes{text-align:center;border-color:#ffd16699;box-shadow:0 0 0 2px #060d1a,0 0 40px #ffd16633;animation:ending-glow 3s ease-in-out infinite}
 .ending-yes .ending-kicker{font-size:34px;letter-spacing:.14em;line-height:1.2;color:var(--gold);text-shadow:0 0 22px #ffd166aa,0 3px #0009;margin:6px 0 14px}
-.ending-yes .ending-message{font-size:24px}
+.ending-yes{padding:26px 28px 24px}.ending-yes .ending-message{font-size:22px;color:#f3f7ff}.ending-yes .ending-sign{color:var(--gold)}
 .pixel-heart{width:78px;height:66px;display:block;margin:0 auto;filter:drop-shadow(0 0 14px #ff5d8faa);animation:icon-float 2.6s ease-in-out infinite}
 body[data-ending="yes"] .result-score strong{color:var(--gold);text-shadow:0 0 26px #ffd16666}
 body[data-ending="yes"] .result-score span{color:var(--gold)}
 .review-toggle.final-row{cursor:default}
 .review-toggle.final-row .review-sign{color:var(--pink)}
 .intro-meta{justify-content:space-between}
-@media(max-width:699px){.ending-yes .ending-kicker{font-size:28px}.ending-message,.ending-yes .ending-message{font-size:20px}}
+@media(max-width:699px){.ending-yes{padding:22px 18px 20px}.ending-yes .ending-kicker{font-size:28px}.ending-message,.ending-yes .ending-message{font-size:20px}}
 @keyframes ending-glow{50%{box-shadow:0 0 0 2px #060d1a,0 0 64px #ffd16655}}
 @media(prefers-reduced-motion:reduce){.ending-yes,.pixel-heart{animation:none}}
+/* On phones the results/letter screen needs the full width: no floating buddy or side buttons over the text. */
+@media(max-width:699px){body[data-phase="done"] .mascot,body[data-phase="done"] .utility{display:none}}
