@@ -215,3 +215,7 @@ body[data-ending="yes"] .result-score span{color:var(--gold)}
 @media(prefers-reduced-motion:reduce){.ending-yes,.pixel-heart{animation:none}}
 /* On phones the results/letter screen needs the full width: no floating buddy or side buttons over the text. */
 @media(max-width:699px){body[data-phase="done"] .mascot,body[data-phase="done"] .utility{display:none}}
+/* Desktop: only the letter box is wider (up to 680px); the rest of the results column stays 448px. */
+@media(min-width:700px){.ending-yes{--letter-width:min(680px,calc(100vw - var(--stage-rail)*2 - 40px));margin-left:calc((448px - var(--letter-width))/2);margin-right:calc((448px - var(--letter-width))/2);padding:30px 40px 28px}}
+/* The wide letter box leaves no room for the floating buddy below 1200px. */
+@media(max-width:1199px){body[data-phase="done"][data-ending="yes"] .mascot{display:none}}
