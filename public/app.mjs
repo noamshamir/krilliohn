@@ -13,7 +13,7 @@ const testMode=local&&new URLSearchParams(location.search).has('test');
 const read=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}};
 const write=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value))}catch{/* Private browsing can limit storage. */}};
 const remove=key=>{try{localStorage.removeItem(key)}catch{/* ignore */}};
-const SAVE_KEY='kh:progress',DRAFT_KEY='kh:draft:',SETTINGS_KEY='kh:settings';
+const SETTINGS_KEY='kh:settings';
 const PROMPTS=[...DATA.questions.map(q=>q.prompt),DATA.final.prompt];
 const settings={lowPower:false,colorblind:false,clearRejected:false,shareLink:true,buddy:'krill',...read(SETTINGS_KEY,{})};
 const scene=new Ocean($('ocean'),$('mascot')),sound=new Sound();
@@ -27,18 +27,17 @@ function applySettings(){scene.lowPower=settings.lowPower;document.body.classLis
 const buddyOptions=[{id:'krill',name:'The Krill',src:'assets/krill.svg'},{id:'schooler',name:'Schooler',src:'assets/schooler.svg'},{id:'rare',name:'Rare Squid',src:'assets/rare.svg'},{id:'deepcut',name:'Deep Cut Angler',src:'assets/deepcut.svg'},{id:'evil',name:'Evil Krill',src:'assets/evil.svg'}];
 applySettings();
 
-// ---------------------------------------------------------------- saved progress
-function save(){if(game)write(SAVE_KEY,game);}
-function clearProgress(){remove(SAVE_KEY);for(let i=0;i<ROUNDS;i++)remove(DRAFT_KEY+i);}
-function validSave(value){return value&&Array.isArray(value.results)&&Number.isInteger(value.round)&&value.round>=0&&value.round<ROUNDS&&value.results.length<=ROUNDS&&value.results.every(r=>r&&typeof r.score==='number')&&typeof value.roundStart==='number';}
-function setGame(value){game=value;currentScore=game.results.reduce((s,r)=>s+r.score,0);visualScore=currentScore;save();updateHud();}
+// A dive lives only in memory: reloading the page (or "Back to the dive") starts over.
+// Clean up anything an earlier version saved in this browser.
+for(const key of ['kh:progress',...Array.from({length:ROUNDS},(_,i)=>'kh:draft:'+i)])remove(key);
+function setGame(value){game=value;currentScore=game.results.reduce((s,r)=>s+r.score,0);visualScore=currentScore;updateHud();}
 
 function updateHud(){const results=game?.results||[];currentScore=results.reduce((s,r)=>s+r.score,0);$('score').textContent=Math.round(visualScore);$('depth').textContent=Math.round(scene.depth).toLocaleString('en-US')+'m';$('round-label').textContent=game?(game.completed?'DIVE COMPLETE':`PROMPT ${Math.min(ROUNDS,game.round+1)} OF ${ROUNDS}`):'SURFACE';document.querySelectorAll('#round-dots i').forEach((dot,i)=>{const r=results[i];dot.className=r?'done':i===(game?.round??-1)?'active':'';dot.style.setProperty('--dot-color',r?'#ffd166':'#26364b')});}
-async function begin(){if(busy)return;busy=true;$('start-btn').disabled=true;await sound.init();try{clearProgress();paused=false;setGame({version:2,round:0,roundStart:now()+PREVIEW_MS,pausedAt:null,results:[],completed:false,yes:false});sound.event('begin');scene.targetActive=1;showRound();}finally{busy=false;$('start-btn').disabled=false;}}
+async function begin(){if(busy)return;busy=true;$('start-btn').disabled=true;await sound.init();try{paused=false;setGame({version:2,round:0,roundStart:now()+PREVIEW_MS,pausedAt:null,results:[],completed:false,yes:false});sound.event('begin');scene.targetActive=1;showRound();}finally{busy=false;$('start-btn').disabled=false;}}
 // As in the original: a 3-second "clock starts in" descent, then the answer clock (tick() drives both).
-function showRound(){setPhase('preview');syncBuddyGold();autoSent=false;lastTick=-1;noCount=0;$('answer-status').textContent='';$('answer-status').className='answer-status';const final=isFinal(game.round);$('prompt-number').textContent=`PROMPT ${game.round+1} OF ${ROUNDS}${final?' · THE LAST ONE':''}`;$('prompt-text').textContent=PROMPTS[game.round];$('answer').value=read(DRAFT_KEY+game.round,'');$('answer').disabled=true;$('submit-btn').disabled=true;const depth=depthAfter();scene.setDepth(depth);scene.roundBase=depth;scene.roundIndex=game.round;scene.round(depth);updateHud();tick();}
+function showRound(){setPhase('preview');syncBuddyGold();autoSent=false;lastTick=-1;noCount=0;$('answer-status').textContent='';$('answer-status').className='answer-status';const final=isFinal(game.round);$('prompt-number').textContent=`PROMPT ${game.round+1} OF ${ROUNDS}${final?' · THE LAST ONE':''}`;$('prompt-text').textContent=PROMPTS[game.round];$('answer').value='';$('answer').disabled=true;$('submit-btn').disabled=true;const depth=depthAfter();scene.setDepth(depth);scene.roundBase=depth;scene.roundIndex=game.round;scene.round(depth);updateHud();tick();}
 
-function reject(message,{clear=false}={}){$('answer-status').className='answer-status';$('answer-status').textContent=message;sound.event('reject');$('answer').classList.remove('shake');void $('answer').offsetWidth;$('answer').classList.add('shake');if(clear||settings.clearRejected){$('answer').value='';write(DRAFT_KEY+game.round,'');}}
+function reject(message,{clear=false}={}){$('answer-status').className='answer-status';$('answer-status').textContent=message;sound.event('reject');$('answer').classList.remove('shake');void $('answer').offsetWidth;$('answer').classList.add('shake');if(clear||settings.clearRejected)$('answer').value='';}
 const noReply=raw=>{const list=CONFIG.noReplies?.length?CONFIG.noReplies:['nice try. try again'];return list[noCount++%list.length].replaceAll('{answer}',raw);};
 
 // Scoring happens entirely in the browser. A wrong or unlisted answer gets another
@@ -60,7 +59,6 @@ async function submit(timeout=false){if(paused)resumeGame();if(!game||busy||!['p
   if(isFinal(round)){game.completed=true;game.yes=scored.kind==='yes';}
   currentScore=game.results.reduce((s,r)=>s+r.score,0);
   const result={...game.results.at(-1),depthAfter:depthAfter()};game.results[game.results.length-1]=result;
-  save();remove(DRAFT_KEY+round);
   sound.event('submit');{const rect=$('answer').getBoundingClientRect();for(let i=0;i<12;i++)scene.typeAt(rect.left+Math.random()*rect.width,rect.top+Math.random()*rect.height,1);}
   await plunge(result,oldScore,oldDepth);
 }finally{busy=false;if(phase==='answering'){$('submit-btn').disabled=!$('answer').value.trim();$('answer').focus({preventScroll:true});}}}
@@ -106,7 +104,7 @@ function showLanding(result,oldScore=currentScore-result.score,oldDepth){
   if(result.score>=60){scene.burst(tier.color,result.score===100?36:22);document.querySelector('.flash').style.background=tier.color;document.querySelector('.flash').classList.remove('on');void document.querySelector('.flash').offsetWidth;document.querySelector('.flash').classList.add('on');}
   if(!gold)syncBuddyGold();updateHud();
 }
-async function next(){if(busy||!game)return;busy=true;try{if(game.completed){if(game.yes){scene.moveCamera(FLOOR_DEPTH+30,testMode?1:900);}else{sound.event('surface');const duration=Math.min(9000,Math.max(2500,(currentScore*METRES_PER_POINT+30)*3));scene.moveCamera(-45,testMode?1:duration,easeOut);}await showResults();return;}sound.event('begin');game.round++;game.roundStart=now()+PREVIEW_MS;game.pausedAt=null;paused=false;save();showRound();}finally{busy=false;}}
+async function next(){if(busy||!game)return;busy=true;try{if(game.completed){if(game.yes){scene.moveCamera(FLOOR_DEPTH+30,testMode?1:900);}else{sound.event('surface');const duration=Math.min(9000,Math.max(2500,(currentScore*METRES_PER_POINT+30)*3));scene.moveCamera(-45,testMode?1:duration,easeOut);}await showResults();return;}sound.event('begin');game.round++;game.roundStart=now()+PREVIEW_MS;game.pausedAt=null;paused=false;showRound();}finally{busy=false;}}
 function syncBuddyGold(){const gold=game?.results.some(r=>r.tier==='krillion');$('mascot').classList.toggle('gold',!!gold);if(settings.buddy==='krill')$('mascot').querySelector('img').src=gold?'assets/krill-gold.svg':'assets/krill.svg';}
 
 // ------------------------------------------------------------------ results
@@ -135,11 +133,13 @@ async function copyResult(button){try{await navigator.clipboard.writeText(result
 function expandReview(button){const i=Number(button.dataset.review),box=button.nextElementSibling,open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));button.querySelector('.review-sign').textContent=open?'+':'−';box.hidden=open;if(open||box.dataset.filled)return;box.dataset.filled='1';const answers=answerList(i),own=game.results[i]?.answer;box.innerHTML=`${answers.length>30?'<input class="search-answers" aria-label="Search accepted answers" placeholder="search '+answers.length+' answers…">':''}<ul class="review-list">${answers.map(a=>`<li data-answer="${escape(a.answer.toLowerCase())}" style="color:${TIERS[a.tier].color}"><span>${escape(a.answer)}${a.answer===own?'<b class="you">YOU</b>':''}</span><span>+${a.score}</span></li>`).join('')}</ul>`;}
 function openWardrobe(){$('buddy-list').innerHTML=buddyOptions.map(b=>`<button data-buddy="${b.id}" aria-pressed="${settings.buddy===b.id}"><img src="${b.src}" alt=""><span>${b.name}</span><small>${settings.buddy===b.id?'Diving':'Ready'}</small></button>`).join('');openDialog('wardrobe-dialog');}
 // The clock stops while a menu is open (as in the original) and while the page is
-// hidden or closed, so switching apps or reloading doesn't eat her time.
-function pauseGame(){if(!game||!['preview','answering'].includes(phase)||paused||game.completed||now()>game.roundStart+ROUND_MS)return;paused=true;game.pausedAt=now();save();}
-function resumeGame(){if(!paused||document.hidden||document.querySelector('dialog[open]'))return;if(game.pausedAt)game.roundStart+=now()-game.pausedAt;game.pausedAt=null;paused=false;save();tick();}
+// hidden, so switching apps doesn't eat her time.
+function pauseGame(){if(!game||!['preview','answering'].includes(phase)||paused||game.completed||now()>game.roundStart+ROUND_MS)return;paused=true;game.pausedAt=now();}
+function resumeGame(){if(!paused||document.hidden||document.querySelector('dialog[open]'))return;if(game.pausedAt)game.roundStart+=now()-game.pausedAt;game.pausedAt=null;paused=false;tick();}
 function openDialog(id){document.querySelectorAll('dialog[open]').forEach(d=>d.close());$(id).showModal();pauseGame();}
-function doAction(action){document.querySelectorAll('dialog[open]').forEach(d=>d.close());if(action==='settings')openDialog('settings-dialog');if(action==='wardrobe')openWardrobe();}
+// "Back to the dive" starts a fresh dive from the title screen, same as a reload.
+function restart(){location.reload();}
+function doAction(action){if(action==='restart'){restart();return;}document.querySelectorAll('dialog[open]').forEach(d=>d.close());if(action==='settings')openDialog('settings-dialog');if(action==='wardrobe')openWardrobe();}
 function tick(){
   if(game&&['preview','answering'].includes(phase)&&!paused){
     const remaining=game.roundStart+ROUND_MS-now();
@@ -160,26 +160,19 @@ function tick(){
 
 $('start-btn').addEventListener('click',begin);$('menu-btn').addEventListener('click',()=>openDialog('menu-dialog'));$('settings-btn').addEventListener('click',()=>openDialog('settings-dialog'));$('wardrobe-btn').addEventListener('click',openWardrobe);$('next-btn').addEventListener('click',next);
 $('mute-btn').addEventListener('click',async()=>{await sound.init();settings.muted=!settings.muted;write(SETTINGS_KEY,settings);applySettings();});$('mascot').addEventListener('click',async()=>{await sound.init();sound.event('blub');$('mascot').classList.remove('poked');void $('mascot').offsetWidth;$('mascot').classList.add('poked');setTimeout(()=>$('mascot').classList.remove('poked'),1000)});
-$('answer-form').addEventListener('submit',e=>{e.preventDefault();void submit()});$('answer').addEventListener('input',()=>{const r=$('answer').getBoundingClientRect();scene.typeAt(r.left+14+Math.min(11*$('answer').value.length,r.width-28),r.top+5);if(paused)resumeGame();if(game)write(DRAFT_KEY+game.round,$('answer').value);$('answer-status').textContent='';tick();});
+$('answer-form').addEventListener('submit',e=>{e.preventDefault();void submit()});$('answer').addEventListener('input',()=>{const r=$('answer').getBoundingClientRect();scene.typeAt(r.left+14+Math.min(11*$('answer').value.length,r.width-28),r.top+5);if(paused)resumeGame();$('answer-status').textContent='';tick();});
 document.addEventListener('click',e=>{const close=e.target.closest('[data-close]');if(close){close.closest('dialog').close();resumeGame();}const action=e.target.closest('[data-action]');if(action)doAction(action.dataset.action);const r=e.target.closest('[data-review]');if(r)expandReview(r);const copy=e.target.closest('#copy-result');if(copy)void copyResult(copy);if(e.target.closest('#native-share'))navigator.share?.({text:resultText()}).catch(()=>{});const buddy=e.target.closest('[data-buddy]');if(buddy){settings.buddy=buddy.dataset.buddy;write(SETTINGS_KEY,settings);applySettings();openWardrobe()}});
 document.addEventListener('change',e=>{if(e.target.matches('[data-setting]')){settings[e.target.dataset.setting]=e.target.checked;write(SETTINGS_KEY,settings);applySettings()}});
 document.addEventListener('input',e=>{if(e.target.matches('.search-answers')){const text=e.target.value.toLowerCase();e.target.nextElementSibling.querySelectorAll('li').forEach(li=>li.hidden=!li.dataset.answer.includes(text));}});
 document.querySelectorAll('dialog').forEach(d=>{d.addEventListener('close',resumeGame);d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom){d.close();resumeGame();}}})});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseGame();else resumeGame();});
-window.addEventListener('pagehide',pauseGame);
 document.addEventListener('keydown',e=>{if(e.key.toLowerCase()==='f'&&!['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)&&!e.ctrlKey&&!e.metaKey){if(document.fullscreenElement)document.exitFullscreen?.();else $('game').requestFullscreen?.().catch(()=>{})}});
-// Browsers only allow audio after a gesture; a resumed game unlocks it on the first tap.
+// Browsers only allow audio after a gesture; unlock it on the first tap or key.
 for(const type of ['pointerdown','keydown'])document.addEventListener(type,()=>void sound.init(),{once:true});
 function viewport(){const height=window.visualViewport?.height||innerHeight;document.documentElement.style.setProperty('--vh',height+'px')}viewport();window.visualViewport?.addEventListener('resize',viewport);window.addEventListener('resize',viewport);
 window.render_game_to_text=()=>JSON.stringify({phase,prompt:game?PROMPTS[game.round]:null,round:game?.round??0,totalRounds:ROUNDS,score:Math.round(visualScore),targetScore:currentScore,depth:Math.round(scene.depth),targetDepth:scene.target,cameraDepth:Math.round(scene.cameraDepth),ending:game?.completed?(game.yes?'yes':'normal'):null,busy,submitDisabled:$('submit-btn').disabled,seconds:game&&!game.completed?Math.max(0,Math.ceil((game.roundStart+ROUND_MS-(paused?game.pausedAt:now()))/1000)):null,paused,status:$('answer-status').textContent,results:game?.results.map(r=>({raw:r.rawAnswer,answer:r.answer,tier:r.tier,score:r.score,kind:r.kind}))||[],draft:$('answer').value,sound:{supported:!!(window.AudioContext||window.webkitAudioContext),state:sound.ac?.state||'not-started',muted:sound.muted},coordinates:'origin at top-left, x rightward, y downward; depth in metres',lowPower:settings.lowPower});
 window.advanceTime=async ms=>{if(!local)return;clockOffset+=Math.max(0,ms);scene.time+=ms/1000;scene.depth=scene.target;scene.active=scene.targetActive;scene.cameraDepth=scene.cameraTarget;scene.cameraJob=null;scene.draw();tick();await new Promise(r=>setTimeout(r,0));};
 setInterval(tick,80);
 
-// Boot: ?reset clears saved progress; otherwise a saved dive resumes where it left off.
-(()=>{const params=new URLSearchParams(location.search);if(params.has('reset')){clearProgress();params.delete('reset');const query=params.toString();history.replaceState(null,'',location.pathname+(query?'?'+query:'')+location.hash);}
-  const saved=read(SAVE_KEY,null);if(!validSave(saved)){if(saved)clearProgress();return;}
-  if(saved.pausedAt&&!saved.completed){saved.roundStart+=now()-saved.pausedAt;saved.pausedAt=null;}
-  setGame(saved);scene.targetActive=1;
-  if(game.completed){if(game.yes){scene.cameraDepth=scene.cameraTarget=FLOOR_DEPTH+30;scene.cameraJob=null;}void showResults();}
-  else if(game.results.length>game.round){const last=game.results.at(-1);showLanding(last,currentScore-last.score,(currentScore-last.score)*METRES_PER_POINT);}
-  else showRound();})();
+// Old links with ?reset still work; every load starts at the title screen anyway.
+(()=>{const params=new URLSearchParams(location.search);if(params.has('reset')){params.delete('reset');const query=params.toString();history.replaceState(null,'',location.pathname+(query?'?'+query:'')+location.hash);}})();

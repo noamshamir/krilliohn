@@ -17,12 +17,12 @@ npm ci
 npm run dev        # builds dist/ and serves it at http://localhost:3051
 ```
 
-- `?reset` clears saved progress (for example `http://localhost:3051/?reset`).
-- Progress is saved in the browser, so a reload resumes the dive or reopens the ending.
+- Nothing is saved between visits. Reloading the page, or choosing **Back to the dive** in the menu, starts over from the title screen. The menu's × just closes the menu.
+- Only settings (sound, low-power, colorblind, dive buddy) are remembered in the browser.
 
 ## The clock
 
-Each prompt starts with the original 3-second "the clock starts in" countdown, then gives 50 seconds to answer (the original gave 25). The last 3 seconds tick and glow red. When time runs out, whatever is typed is scored, or scores 0 if it isn't on the list. The clock pauses while a menu is open and while the page is hidden or closed, so switching apps or reloading doesn't use up time.
+Each prompt starts with the original 3-second "the clock starts in" countdown, then gives 50 seconds to answer (the original gave 25). The last 3 seconds tick and glow red. When time runs out, whatever is typed is scored, or scores 0 if it isn't on the list. The clock pauses while a menu is open and while the page is hidden, so switching apps doesn't use up time.
 
 ## Test
 

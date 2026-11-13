@@ -1,5 +1,5 @@
 // Plays full Krilliohn runs in Chrome: both endings, retries, the 50-second clock,
-// timeouts, pause, reload, ?reset, no outside requests.
+// timeouts, pause, reload/"Back to the dive" resets, no outside requests.
 // Usage: npm run dev   (in another terminal)   then   node scripts/browser-audit.mjs [baseUrl] [outputDir]
 import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
@@ -127,8 +127,8 @@ try {
   const shared = await page.evaluate(() => navigator.clipboard.readText());
   assert.ok(shared.startsWith(`${CONFIG.shareTitle} 🦐\n725/900 · 9,000m\n🌟🫧🌟🌟🌟🏮🐟🌟🌟`), shared);
   await page.reload();
-  await phaseIs(page, 'done');
-  assert.equal((await state(page)).ending, 'yes', 'reload reopens the ending');
+  await phaseIs(page, 'intro');
+  assert.deepEqual([(await state(page)).results.length, (await state(page)).ending], [0, null], 'reload after the ending starts over');
   console.log('Yes run:\n  ' + log.join('\n  '));
 
   // ---------------------------------------------- timeouts, pause, other ending
@@ -191,19 +191,31 @@ try {
   await page.screenshot({ path: `${output}/normal-ending.png` });
   console.log('Clock run:\n  ' + log.join('\n  '));
 
-  // ----------------------------------------------- reload keeps the clock (real time)
+  // ------------------------------------- reload and "Back to the dive" start over
   const fresh = await context.newPage();
-  await watch(fresh, 'reload');
-  await fresh.goto(base + '/?reset');
+  await watch(fresh, 'reset');
+  await fresh.goto(base + '/?test=1');
   await fresh.waitForFunction(() => window.render_game_to_text);
   await fresh.locator('#start-btn').click({ force: true });
-  await phaseIs(fresh, 'answering');
-  await fresh.waitForTimeout(2000);
-  const before = (await state(fresh)).seconds;
+  await toAnswering(fresh, 0);
+  await answer(fresh, 'banana'); await descend(fresh);
+  await toAnswering(fresh, 1);
+  await fresh.locator('#answer').fill('jungkook');
   await fresh.reload();
-  await fresh.waitForFunction(() => window.render_game_to_text && JSON.parse(window.render_game_to_text()).phase === 'answering');
-  const after = (await state(fresh)).seconds;
-  assert.ok(Math.abs(after - before) <= 1 && (await state(fresh)).round === 0, `reload resumes the clock (${before}s → ${after}s)`);
+  await fresh.waitForFunction(() => window.render_game_to_text && JSON.parse(window.render_game_to_text()).phase === 'intro');
+  assert.deepEqual([(await state(fresh)).results.length, (await state(fresh)).score], [0, 0], 'reload mid-dive starts over');
+  await fresh.locator('#start-btn').click({ force: true });
+  await toAnswering(fresh, 0);
+  assert.equal((await state(fresh)).draft, '', 'no leftover typing');
+  await answer(fresh, 'banana'); await descend(fresh);
+  await toAnswering(fresh, 1);
+  await fresh.locator('#menu-btn').click();
+  await fresh.getByRole('button', { name: /Back to the dive/ }).click();
+  await fresh.waitForFunction(() => window.render_game_to_text && JSON.parse(window.render_game_to_text()).phase === 'intro');
+  assert.deepEqual([(await state(fresh)).results.length, (await state(fresh)).score], [0, 0], '"Back to the dive" starts over');
+  await fresh.locator('#menu-btn').click();
+  await fresh.locator('#menu-dialog .close').click(); // the × just closes the menu
+  assert.equal((await state(fresh)).phase, 'intro');
 
   // ---------------------------------------------------------------- mobile
   const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
