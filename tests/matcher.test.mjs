@@ -48,8 +48,8 @@ test('"lee" scores the easiest tier it matches', () => {
   assert.equal(r.tier, 'plankton');
 });
 
-test('the answer clock is twice the original 25 seconds, after a 3-second descent', () => {
-  assert.equal(ROUND_MS, 50000);
+test('the answer clock is 100 seconds (4x the original 25), after a 3-second descent', () => {
+  assert.equal(ROUND_MS, 100000);
   assert.equal(PREVIEW_MS, 3000);
 });
 

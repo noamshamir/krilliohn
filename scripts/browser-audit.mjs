@@ -1,10 +1,12 @@
-// Plays full Krilliohn runs in Chrome: both endings, retries, the 50-second clock,
+// Plays full Krilliohn runs in Chrome: both endings, retries, the answer clock,
 // timeouts, pause, reload/"Back to the dive" resets, no outside requests.
 // Usage: npm run dev   (in another terminal)   then   node scripts/browser-audit.mjs [baseUrl] [outputDir]
 import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import { CONFIG } from '../public/config.mjs';
+import { ROUND_MS } from '../public/rules.mjs';
+const SECONDS = ROUND_MS / 1000;
 
 const base = (process.argv[2] || 'http://localhost:3051').replace(/\/$/, '');
 const output = process.argv[3] || 'output/playwright';
@@ -37,7 +39,7 @@ async function toAnswering(page, round) {
   await advance(page, 3100);
   await phaseIs(page, 'answering');
   assert.ok(await page.locator('.timer').isVisible(), 'timer is visible');
-  near((await state(page)).seconds, 50, 'clock starts at 50');
+  near((await state(page)).seconds, SECONDS, `clock starts at ${SECONDS}`);
 }
 async function rejected(page, text, expected, { cleared = false } = {}) {
   await page.locator('#answer').fill(text);
@@ -67,7 +69,7 @@ async function answer(page, text) {
   return land(page);
 }
 async function timeOut(page) {
-  await advance(page, 51000);
+  await advance(page, ROUND_MS + 1000);
   return land(page);
 }
 async function descend(page) { await page.locator('#next-btn').click({ force: true }); }
@@ -90,7 +92,7 @@ try {
   await page.waitForTimeout(250);
   assert.equal((await state(page)).phase, 'answering');
   await advance(page, 10000);
-  near((await state(page)).seconds, 40, 'clock counts down');
+  near((await state(page)).seconds, SECONDS - 10, 'clock counts down');
   log.push(await answer(page, 'chain chomp'));
   assert.deepEqual(await page.evaluate(() => [...document.querySelectorAll('#tier-ladder .tier-line')].map(l => l.textContent.trim())), ['PLANKTON · 10', 'TOO CLEVER · 15', 'SCHOOLER · 30', 'RARE · 60', 'DEEP CUT · 85', 'ONE IN A KRILLIOHN · 100'], 'descent ladder includes the Too Clever line');
   await descend(page);
@@ -164,7 +166,7 @@ try {
   await advance(page, 20000); // menu open: clock is paused
   assert.equal((await state(page)).paused, true);
   await page.locator('#menu-dialog .close').click();
-  near((await state(page)).seconds, 40, 'menu pauses the clock');
+  near((await state(page)).seconds, SECONDS - 10, 'menu pauses the clock');
   log.push(await answer(page, 'banana')); await descend(page);
 
   await toAnswering(page, 1);
@@ -193,7 +195,7 @@ try {
   log.push(await answer(page, 'nic got gated')); await descend(page);
 
   await toAnswering(page, 7);
-  await advance(page, 47500);
+  await advance(page, ROUND_MS - 2500);
   await page.waitForFunction(() => document.body.classList.contains('timer-hot'));
   await page.waitForTimeout(700);
   await page.screenshot({ path: `${output}/last-seconds.png` });

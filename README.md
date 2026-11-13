@@ -1,6 +1,6 @@
 # Krilliohn 🦐
 
-A one-off special edition of a rare-answer trivia dive: nine fixed prompts, 50 seconds each, generous answer matching, and a final question. It runs as a static site with no server, no outside requests and no analytics.
+A one-off special edition of a rare-answer trivia dive: nine fixed prompts, 100 seconds each, generous answer matching, and a final question. It runs as a static site with no server, no outside requests and no analytics.
 
 Built on [OpenKrillion](https://github.com/VulcanEon/openkrillion.com-service) (MIT). See [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -22,7 +22,7 @@ npm run dev        # builds dist/ and serves it at http://localhost:3051
 
 ## The clock
 
-Each prompt starts with the original 3-second "the clock starts in" countdown, then gives 50 seconds to answer (the original gave 25). The last 3 seconds tick and glow red. When time runs out, whatever is typed is scored, or scores 0 if it isn't on the list. The clock pauses while a menu is open and while the page is hidden, so switching apps doesn't use up time.
+Each prompt starts with the original 3-second "the clock starts in" countdown, then gives 100 seconds to answer (the original gave 25). The last 3 seconds tick and glow red. When time runs out, whatever is typed is scored, or scores 0 if it isn't on the list. The clock pauses while a menu is open and while the page is hidden, so switching apps doesn't use up time.
 
 ## Test
 
