@@ -53,9 +53,17 @@ async function land(page) {
   await page.waitForTimeout(120);
   return (await page.locator('#landing').innerText()).replace(/\s+/g, ' ').trim();
 }
+// Types an answer and presses return; if the game proposes a correction
+// ("typed" → "listed answer"), checks the box was filled in and presses return again.
 async function answer(page, text) {
   await page.locator('#answer').fill(text);
   await page.locator('#answer').press('Enter');
+  await page.waitForFunction(() => { const s = JSON.parse(window.render_game_to_text()); return s.phase !== 'answering' || s.status.includes('→'); });
+  const s = await state(page);
+  if (s.phase === 'answering') {
+    assert.ok(s.status.startsWith(`“${text}” → “${s.draft}”`) && s.status.includes('submit again to confirm'), `correction shown for ${text}: ${s.status}`);
+    await page.locator('#answer').press('Enter');
+  }
   return land(page);
 }
 async function timeOut(page) {
@@ -77,6 +85,7 @@ try {
   assert.match(await page.locator('#preview-label').innerText(), /the clock starts in [1-3]/);
   await page.screenshot({ path: `${output}/preview.png` });
   await toAnswering(page, 0);
+  assert.equal(await page.locator('.tagline, .subline, .open-label').count(), 0, 'title texts removed');
   await page.locator('#answer').press('Enter'); // empty submission does nothing
   await page.waitForTimeout(250);
   assert.equal((await state(page)).phase, 'answering');
@@ -92,6 +101,19 @@ try {
 
   await toAnswering(page, 2);
   await rejected(page, 'Bowling', '“Bowling”: no echo. try again');
+  await page.locator('#answer').fill('20q');
+  await page.locator('#answer').press('Enter');
+  await page.waitForFunction(() => JSON.parse(window.render_game_to_text()).status.includes('→'));
+  let s2 = await state(page);
+  assert.equal(s2.phase, 'answering', 'a corrected answer waits for confirmation');
+  assert.equal(s2.draft, '20 Questions', 'the box is filled in with the listed answer');
+  assert.equal(s2.status, '“20q” → “20 Questions”submit again to confirm · or edit');
+  await page.waitForTimeout(700);
+  await page.screenshot({ path: `${output}/correction.png` });
+  await page.locator('#answer').press('End');
+  await page.locator('#answer').type('s'); // editing cancels the correction
+  s2 = await state(page);
+  assert.deepEqual([s2.status, s2.phase], ['', 'answering'], 'editing clears the correction');
   log.push(await answer(page, '20q')); await descend(page);
 
   await toAnswering(page, 3);

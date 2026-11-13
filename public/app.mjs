@@ -15,9 +15,9 @@ const write=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value))}ca
 const remove=key=>{try{localStorage.removeItem(key)}catch{/* ignore */}};
 const SETTINGS_KEY='kh:settings';
 const PROMPTS=[...DATA.questions.map(q=>q.prompt),DATA.final.prompt];
-const settings={lowPower:false,colorblind:false,clearRejected:false,shareLink:true,buddy:'krill',...read(SETTINGS_KEY,{})};
+const settings={lowPower:false,colorblind:false,corrections:true,clearRejected:false,shareLink:true,buddy:'krill',...read(SETTINGS_KEY,{})};
 const scene=new Ocean($('ocean'),$('mascot')),sound=new Sound();
-let game=null,phase='intro',busy=false,currentScore=0,visualScore=0,scoreAnimation=null,promptExitTimer=null,paused=false,autoSent=false,lastTick=-1,clockOffset=0,noCount=0;
+let game=null,phase='intro',busy=false,currentScore=0,visualScore=0,scoreAnimation=null,promptExitTimer=null,correction=null,paused=false,autoSent=false,lastTick=-1,clockOffset=0,noCount=0;
 const now=()=>Date.now()+clockOffset; // clockOffset only moves in local tests (advanceTime)
 const isFinal=round=>round===ROUNDS-1;
 const depthAfter=()=>game?.yes?FLOOR_DEPTH:currentScore*METRES_PER_POINT;
@@ -35,9 +35,14 @@ function setGame(value){game=value;currentScore=game.results.reduce((s,r)=>s+r.s
 function updateHud(){const results=game?.results||[];currentScore=results.reduce((s,r)=>s+r.score,0);$('score').textContent=Math.round(visualScore);$('depth').textContent=Math.round(scene.depth).toLocaleString('en-US')+'m';$('round-label').textContent=game?(game.completed?'DIVE COMPLETE':`PROMPT ${Math.min(ROUNDS,game.round+1)} OF ${ROUNDS}`):'SURFACE';document.querySelectorAll('#round-dots i').forEach((dot,i)=>{const r=results[i];dot.className=r?'done':i===(game?.round??-1)?'active':'';dot.style.setProperty('--dot-color',r?'#ffd166':'#26364b')});}
 async function begin(){if(busy)return;busy=true;$('start-btn').disabled=true;await sound.init();try{paused=false;setGame({version:2,round:0,roundStart:now()+PREVIEW_MS,pausedAt:null,results:[],completed:false,yes:false});sound.event('begin');scene.targetActive=1;showRound();}finally{busy=false;$('start-btn').disabled=false;}}
 // As in the original: a 3-second "clock starts in" descent, then the answer clock (tick() drives both).
-function showRound(){setPhase('preview');syncBuddyGold();autoSent=false;lastTick=-1;noCount=0;$('answer-status').textContent='';$('answer-status').className='answer-status';const final=isFinal(game.round);$('prompt-number').textContent=`PROMPT ${game.round+1} OF ${ROUNDS}${final?' · THE LAST ONE':''}`;$('prompt-text').textContent=PROMPTS[game.round];$('answer').value='';$('answer').disabled=true;$('submit-btn').disabled=true;const depth=depthAfter();scene.setDepth(depth);scene.roundBase=depth;scene.roundIndex=game.round;scene.round(depth);updateHud();tick();}
+function showRound(){setPhase('preview');syncBuddyGold();correction=null;autoSent=false;lastTick=-1;noCount=0;$('answer-status').textContent='';$('answer-status').className='answer-status';const final=isFinal(game.round);$('prompt-number').textContent=`PROMPT ${game.round+1} OF ${ROUNDS}${final?' · THE LAST ONE':''}`;$('prompt-text').textContent=PROMPTS[game.round];$('answer').value='';$('answer').disabled=true;$('submit-btn').disabled=true;const depth=depthAfter();scene.setDepth(depth);scene.roundBase=depth;scene.roundIndex=game.round;scene.round(depth);updateHud();tick();}
 
-function reject(message,{clear=false}={}){$('answer-status').className='answer-status';$('answer-status').textContent=message;sound.event('reject');$('answer').classList.remove('shake');void $('answer').offsetWidth;$('answer').classList.add('shake');if(clear||settings.clearRejected)$('answer').value='';}
+function reject(message,{clear=false}={}){correction=null;$('answer-status').className='answer-status';$('answer-status').textContent=message;sound.event('reject');$('answer').classList.remove('shake');void $('answer').offsetWidth;$('answer').classList.add('shake');if(clear||settings.clearRejected)$('answer').value='';}
+// Like the original game: a guess that only matches after correction (alias, typo,
+// part of an answer) is first filled into the box; pressing return again scores it.
+// Differences in case, accents, punctuation or spacing don't need confirming.
+function sameAnswer(raw,answer){const a=normalize(raw);return[answer,String(answer).replace(/\([^)]*\)/g,' ')].some(text=>{const b=normalize(text);return a===b||a.replace(/ /g,'')===b.replace(/ /g,'');});}
+function propose(raw,result){correction={text:result.answer,result};$('answer').value=result.answer;$('answer-status').className='answer-status correction';$('answer-status').innerHTML=`“${escape(raw)}” → <b>“${escape(result.answer)}”</b><small>submit again to confirm · or edit</small>`;$('answer').focus({preventScroll:true});}
 const noReply=raw=>{const list=CONFIG.noReplies?.length?CONFIG.noReplies:['nice try. try again'];return list[noCount++%list.length].replaceAll('{answer}',raw);};
 
 // Scoring happens entirely in the browser. A wrong or unlisted answer gets another
@@ -45,7 +50,9 @@ const noReply=raw=>{const list=CONFIG.noReplies?.length?CONFIG.noReplies:['nice 
 async function submit(timeout=false){if(paused)resumeGame();if(!game||busy||!['preview','answering'].includes(phase)||paused||game.completed||game.results.length>game.round)return;const raw=$('answer').value.trim();if(!raw&&!timeout)return;if(!timeout&&now()<game.roundStart)return;busy=true;$('submit-btn').disabled=true;try{
   const round=game.round,final=isFinal(round),checked=raw?(final?judgeFinal(DATA.final,raw):matchGuess(DATA.questions[round],raw)):null;
   let scored;
-  if(checked&&(checked.kind==='match'||checked.kind==='yes'))scored=checked;
+  if(!final&&!timeout&&correction&&raw===correction.text)scored={...correction.result,confirmed:true}; // second Enter confirms
+  else if(checked?.kind==='match'&&!final&&!timeout&&settings.corrections&&!sameAnswer(raw,checked.answer)){propose(raw,checked);return;}
+  else if(checked&&(checked.kind==='match'||checked.kind==='yes'))scored=checked;
   else if(!timeout){
     if(final&&checked.kind==='no')reject(noReply(raw),{clear:true});
     else if(checked.kind==='not_accepted')reject(`“${raw}”: ${checked.message} · try again`);
@@ -88,7 +95,7 @@ function landingCopy(result){
   return{eyebrow:tier.name.toUpperCase(),answer:`“${result.answer}”`,points:`<b>+${result.score} PTS</b> · sink ${(result.score*METRES_PER_POINT).toLocaleString('en-US')}m`,quip:result.message||tier.blurb};
 }
 // Shown when the matched answer differs from what was typed (typo or partial match).
-function typedNote(result){if(!result.rawAnswer||!result.answer||result.kind==='yes')return'';const a=normalize(result.rawAnswer),b=normalize(String(result.answer).replace(/\([^)]*\)/g,' '));return a===b||a.replace(/ /g,'')===b.replace(/ /g,'')?'':`you typed “${result.rawAnswer}”`;}
+function typedNote(result){if(!result.rawAnswer||!result.answer||result.kind==='yes'||result.confirmed)return'';const a=normalize(result.rawAnswer),b=normalize(String(result.answer).replace(/\([^)]*\)/g,' '));return a===b||a.replace(/ /g,'')===b.replace(/ /g,'')?'':`you typed “${result.rawAnswer}”`;}
 function showLanding(result,oldScore=currentScore-result.score,oldDepth){
   setPhase('landed');const tier=TIERS[result.tier];document.body.dataset.tier=result.tier||'miss';document.documentElement.style.setProperty('--tier',tier?.color||'#7d93b8');
   const icon=$('land-icon');icon.hidden=!tier;icon.src='assets/'+(iconFor(result.tier)||'plankton')+'.svg';icon.style.visibility=result.tier==='krillion'?'hidden':'visible';
@@ -160,7 +167,7 @@ function tick(){
 
 $('start-btn').addEventListener('click',begin);$('menu-btn').addEventListener('click',()=>openDialog('menu-dialog'));$('settings-btn').addEventListener('click',()=>openDialog('settings-dialog'));$('wardrobe-btn').addEventListener('click',openWardrobe);$('next-btn').addEventListener('click',next);
 $('mute-btn').addEventListener('click',async()=>{await sound.init();settings.muted=!settings.muted;write(SETTINGS_KEY,settings);applySettings();});$('mascot').addEventListener('click',async()=>{await sound.init();sound.event('blub');$('mascot').classList.remove('poked');void $('mascot').offsetWidth;$('mascot').classList.add('poked');setTimeout(()=>$('mascot').classList.remove('poked'),1000)});
-$('answer-form').addEventListener('submit',e=>{e.preventDefault();void submit()});$('answer').addEventListener('input',()=>{const r=$('answer').getBoundingClientRect();scene.typeAt(r.left+14+Math.min(11*$('answer').value.length,r.width-28),r.top+5);if(paused)resumeGame();$('answer-status').textContent='';tick();});
+$('answer-form').addEventListener('submit',e=>{e.preventDefault();void submit()});$('answer').addEventListener('input',()=>{const r=$('answer').getBoundingClientRect();scene.typeAt(r.left+14+Math.min(11*$('answer').value.length,r.width-28),r.top+5);if(paused)resumeGame();if(correction&&$('answer').value===correction.text)return tick();correction=null;$('answer-status').textContent='';$('answer-status').className='answer-status';tick();});
 document.addEventListener('click',e=>{const close=e.target.closest('[data-close]');if(close){close.closest('dialog').close();resumeGame();}const action=e.target.closest('[data-action]');if(action)doAction(action.dataset.action);const r=e.target.closest('[data-review]');if(r)expandReview(r);const copy=e.target.closest('#copy-result');if(copy)void copyResult(copy);if(e.target.closest('#native-share'))navigator.share?.({text:resultText()}).catch(()=>{});const buddy=e.target.closest('[data-buddy]');if(buddy){settings.buddy=buddy.dataset.buddy;write(SETTINGS_KEY,settings);applySettings();openWardrobe()}});
 document.addEventListener('change',e=>{if(e.target.matches('[data-setting]')){settings[e.target.dataset.setting]=e.target.checked;write(SETTINGS_KEY,settings);applySettings()}});
 document.addEventListener('input',e=>{if(e.target.matches('.search-answers')){const text=e.target.value.toLowerCase();e.target.nextElementSibling.querySelectorAll('li').forEach(li=>li.hidden=!li.dataset.answer.includes(text));}});

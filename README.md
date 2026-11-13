@@ -42,6 +42,7 @@ All scoring is in [`public/matcher.mjs`](public/matcher.mjs):
   2. Next comes a typo match on a whole answer: 1 edit from 4 letters, 2 from 8, 3 from 13. Swapped letters count as one edit.
   3. Last comes word overlap. Any word of an answer counts, with typos, and split or joined words like "heungmin" count too. The most overlap wins.
 - **Ties** go to the easiest tier, so shared names like Lee, Kim, Green and Hugo score low.
+- **Corrections are confirmed first**, as in the original game. If a guess only matches after correction (an alias, a typo or part of an answer), the box fills in the listed answer, showing `"typed" → "Listed answer"`; pressing return again scores it, and editing cancels it. Differences in case, accents, punctuation or spacing count as exact. If the clock runs out, a pending or typo'd answer is scored as is. This can be turned off under **Settings → Answer corrections**.
 - **Wrong answers get another try**, as in the original game. An unlisted answer shows "no echo. try again", and a `not_accepted` answer shows the prompt's note. The JSON's `partial_credit` setting is no longer used.
 - **Final question:**
   - Repeated letters are collapsed first, then positive phrases like "why not" and "no doubt" are set aside.

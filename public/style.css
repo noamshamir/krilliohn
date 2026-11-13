@@ -219,3 +219,6 @@ body[data-ending="yes"] .result-score span{color:var(--gold)}
 @media(min-width:700px){.ending-yes{--letter-width:min(680px,calc(100vw - var(--stage-rail)*2 - 40px));margin-left:calc((448px - var(--letter-width))/2);margin-right:calc((448px - var(--letter-width))/2);padding:30px 40px 28px}}
 /* The wide letter box leaves no room for the floating buddy below 1200px. */
 @media(max-width:1199px){body[data-phase="done"][data-ending="yes"] .mascot{display:none}}
+/* Correction preview, as in the original game: what was typed → the listed answer. */
+.answer-status.correction{color:var(--foam)}.answer-status.correction b{color:var(--cyan);font-weight:400}
+.answer-status.correction{left:50%;right:auto;transform:translateX(-50%);width:max-content;max-width:100%}
