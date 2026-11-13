@@ -17,7 +17,9 @@ For as long as I can remember, music has been my refuge from the world. Playing 
 
 The development of our relationship these past few weeks has surprised me. For months I thought of us just as close friends, and I’m a little disappointed it took me so long to figure out why that changed. But it fills me with nothing short of ecstasy that I finally did.
 
-It’s because you, to me, are music. Many times I feel that you reach this isolated part of my mind and heart. To extend the metaphor to a tiresome and probably cringe point: yours is the melody stuck in my head and ever-occupying my heart.
+It’s because you, to me, are music. Many times I feel that you reach this isolated part of my mind and heart. To extend the metaphor to a perhaps tiresome point:
+
+yours is the melody stuck in my head and ever-occupying my heart.
 
 Yours,
 Noam`,
